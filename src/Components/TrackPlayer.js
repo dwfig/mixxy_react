@@ -59,15 +59,15 @@ class TrackPlayer extends Component {
     return (
       <div className = "trackplayer">
         <div className="slidecontainer">
-          <div class= "sliderlabel">Play-Rate</div>
+          <div className= "sliderlabel">Play-Rate</div>
           <input type="range" min="1" max="50" value={this.state.rateSlider} className="slider" id="myRange" onChange= {this.handleRateSlide} />
         </div>
         <div className="slidecontainer">
-          <div class= "sliderlabel">Pitch</div>
+          <div className= "sliderlabel">Pitch</div>
           <input type="range" min="-12" max="12" value={this.state.pitchSlider} className="slider" id="myRange" onChange= {this.handlePitchSlide} />
         </div>
         <div className="slidecontainer">
-          <div class= "sliderlabel">Volume</div>
+          <div className= "sliderlabel">Volume</div>
           <input type="range" min="-60" max="20" value={this.state.volumeSlider} className="slider" id="myRange" onChange= {this.handleVolumeSlide} />
         </div>
       </ div>

@@ -11,12 +11,13 @@ class PlayerForm extends Component {
 
   //form will need NAME field and SUBMIT button
   render(){
+    console.log(this.props.track1)
     return (
       <div className = "playerform">
-        <TrackPlayer />
-        <TrackPlayer />
-        <TrackPlayer />
-        <TrackPlayer />
+        <TrackPlayer track = {this.props.track1}/>
+        <TrackPlayer track = {this.props.track2}/>
+        <TrackPlayer track = {this.props.track3}/>
+        <TrackPlayer track = {this.props.track4}/>
       </div>
     )
   }

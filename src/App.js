@@ -17,14 +17,46 @@ class App extends Component {
         trackIn: "0",
         trackOut: "0",
         url: ""
-      }
+      },
+      track2 :{
+        active: false,
+        playRate: "10",
+        pitchShift: "0",
+        volumeLevel: "-60",
+        trackIn: "0",
+        trackOut: "0",
+        url: ""
+      },
+      track3 :{
+        active: false,
+        playRate: "10",
+        pitchShift: "0",
+        volumeLevel: "-60",
+        trackIn: "0",
+        trackOut: "0",
+        url: ""
+      },
+      track4 :{
+        active: false,
+        playRate: "10",
+        pitchShift: "0",
+        volumeLevel: "-60",
+        trackIn: "0",
+        trackOut: "0",
+        url: ""
+      },
     }
   }
 
   render() {
     return (
       <div className="mainapp">
-          <PlayerForm />
+          <PlayerForm
+            track1 = {this.state.track1}
+            track2 = {this.state.track2}
+            track3 = {this.state.track3}
+            track4 = {this.state.track4}
+            />
           <FileLibrary />
           <SavedSongs />
       </div>
