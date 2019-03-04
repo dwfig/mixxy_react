@@ -5,10 +5,19 @@ import PlayerForm from './Containers/PlayerForm'
 import SavedSongs from "./Containers/SavedSongs"
 import FileLibrary from "./Containers/FileLibrary"
 
+const URLAPI = 'http://localhost:3000/api/v1/urls'
+
 class App extends Component {
+  componentDidMount() {
+    fetch(URLAPI)
+    .then(res => res.json())
+    .then(urls => this.setState({urls: urls}))
+  }
+
   constructor(props){
     super(props)
     this.state = {
+      urls: [],
       track1 :{
         active: false,
         playRate: "10",
@@ -62,7 +71,7 @@ class App extends Component {
             handleRateSlide = {this.handleRateSlide}
             handlePitchSlide = {this.handlePitchSlide}
             />
-          <FileLibrary />
+          <FileLibrary urls={this.state.urls} />
           <SavedSongs />
       </div>
     );
