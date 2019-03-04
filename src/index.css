@@ -16,3 +16,24 @@ code {
 .slidecontainer {
   width: 100%; /* Width of the outside container */
 }
+
+.mainapp{
+  display: grid;
+  grid-template-areas: "playerform playerform filelibrary"
+                       "playerform playerform filelibrary"
+                       "savedsongs savedsongs filelibrary"
+}
+
+.playerform{
+  grid-area: playerform;
+
+}
+
+.savedsongs{
+  grid-area: savedsongs;
+}
+
+.filelibrary{
+  grid-area: filelibrary;
+
+}
