@@ -1,18 +1,22 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
+import File from '../Components/File'
 
 const FileLibrary = props => {
-
-  const generateFiles = () =>{
-    return(
-      <div className="file">
-        file
-      </div>
-    )
-  }
+  console.log(props.urls);
+  const generateFiles = () => {
+    return props.urls.map(url => {
+      return (
+        < File
+          key={url.id}
+          url={url}
+        />
+      )
+    })//end of map
+  }//end of generateFiles fn
 
   return(
     <div className = "filelibrary">
-      filelibrary: 
+      filelibrary:
       {generateFiles()}
     </div>
   )
