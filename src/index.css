@@ -21,19 +21,24 @@ code {
   display: grid;
   grid-template-areas: "playerform playerform filelibrary"
                        "playerform playerform filelibrary"
-                       "savedsongs savedsongs filelibrary"
+                       "savedsongs savedsongs filelibrary";
+  grid-gap: 30px
 }
 
 .playerform{
   grid-area: playerform;
-
+  width: 100%;
+  background-color: #dce4e5
 }
 
 .savedsongs{
   grid-area: savedsongs;
+  width: 100%;
+  background-color: #dce4e5
 }
 
 .filelibrary{
   grid-area: filelibrary;
-
+  width: 100%;
+  background-color: #dce4e5
 }
