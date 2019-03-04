@@ -35,20 +35,20 @@ class TrackPlayer extends Component {
   }
 
   handleRateSlide = (e) => {
-    console.log(e.target)
+    //console.log(e.target)
     this.setState({rateSlider : e.target.value})
     this.player.playbackRate = (this.state.rateSlider/10);
     //handleSlide is currently only wired up to the first slider on the page
   }
 
   handlePitchSlide = (e) => {
-    console.log(e.target)
+    //console.log(e.target)
     this.setState({pitchSlider : e.target.value})
     this.pitchShift.pitch = (this.state.pitchSlider);
   }
 
   handleVolumeSlide = (e) => {
-    console.log(e.target)
+    //console.log(e.target)
     this.setState({volumeSlider : e.target.value})
     this.trackVolume.volume.value = (this.state.volumeSlider);
     //handleSlide is currently only wired up to the first slider on the page

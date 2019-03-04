@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PlayerForm from './Containers/PlayerForm'
-import TrackPlayer from './Components/TrackPlayer'
+import SavedSongs from "./Containers/SavedSongs"
+import FileLibrary from "./Containers/FileLibrary"
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className="mainapp">
           <PlayerForm />
-        </header>
+          <FileLibrary />
+          <SavedSongs />
       </div>
     );
   }
