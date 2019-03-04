@@ -10,7 +10,7 @@ class TrackPlayer extends Component {
     this.state = {
       rateSlider : "10",
       pitchSlider: "0",
-      volumeSlider: "-60"
+      volumeSlider: "-60.0"
     }
     //I'm currently using a slider from 1 to 50 and dividing it by 10
     // meaning users can pick speeds between 0.1 and 5.0
@@ -19,7 +19,9 @@ class TrackPlayer extends Component {
     let clipUrl = "https://upload.wikimedia.org/wikipedia/commons/1/1c/Guitare_electrique_arpege.ogg"
     this.player = new Tone.Player(clipUrl)
     let distortion = new Tone.Distortion(0.6)
-    this.trackVolume = new Tone.Volume(-60)
+    this.trackVolume = new Tone.Volume(-60.0)
+    //this.trackVolume.volume.value = this.props.volumeLevel
+    //not convinced this line is right -- ERRORS HARD
     this.pitchShift = new Tone.PitchShift(0)
     // these are defaults, we can put these in the constructor to start them here
     // or in Event Handlers to let the user determine whatever details we want to give them
@@ -33,6 +35,10 @@ class TrackPlayer extends Component {
     this.player.chain(this.trackVolume, this.pitchShift, distortion, Tone.Master)
 
   }
+  //THESE are about to be moved to App - they will look for the track that matches trackNum
+  // and change the state up there
+  // they can also be refactored into ONE function that receives trackNum and sliderType
+  // if it also converts its output based on which state obj it's passing to
 
   handleRateSlide = (e) => {
     //console.log(e.target)
@@ -47,15 +53,25 @@ class TrackPlayer extends Component {
     this.pitchShift.pitch = (this.state.pitchSlider);
   }
 
-  handleVolumeSlide = (e) => {
-    //console.log(e.target)
-    this.setState({volumeSlider : e.target.value})
-    this.trackVolume.volume.value = (this.state.volumeSlider);
-    //handleSlide is currently only wired up to the first slider on the page
+  // handleVolumeSlide = (e) => {
+  //   //console.log(e.target)
+  //   this.setState({volumeSlider : e.target.value})
+  //   this.trackVolume.volume.value = (this.state.volumeSlider);
+  //   //handleSlide is currently only wired up to the first slider on the page
+  // }
+  localVolumeSlide(){
+    console.log("a ",this.trackVolume.volume.value)
+    let volumeFloat = parseFloat(this.props.track.volumeLevel)
+    console.log("volumeFloat ",typeof volumeFloat, volumeFloat)
+    this.trackVolume.volume.value = volumeFloat
   }
 
   render(){
+    console.log("c ",this.props)
     //keep Tone events out of here--pass variables only
+    //console.log("track ", this.props.trackNum, this.props.track)
+    //console.log(this.props.handleVolumeSlide)
+    //this.localVolumeSlide()
     return (
       <div className = "trackplayer">
         <div className="slidecontainer">
@@ -68,7 +84,7 @@ class TrackPlayer extends Component {
         </div>
         <div className="slidecontainer">
           <div className= "sliderlabel">Volume</div>
-          <input type="range" min="-60" max="20" value={this.state.volumeSlider} className="slider" id="myRange" onChange= {this.handleVolumeSlide} />
+          <input type="range" min="-60" max="20" value={this.props.volumeLevel} className="slider" id="myRange" onChange={this.localVolumeSlide(), (e) => this.props.handleVolumeSlide(this.props.trackNum,e)} />
         </div>
       </ div>
     )

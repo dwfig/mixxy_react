@@ -13,7 +13,7 @@ class App extends Component {
         active: false,
         playRate: "10",
         pitchShift: "0",
-        volumeLevel: "-60",
+        volumeLevel: "-60.0",
         trackIn: "0",
         trackOut: "0",
         url: ""
@@ -49,6 +49,8 @@ class App extends Component {
   }
 
   render() {
+    //console.log(this.state[`track${1}`].volumeLevel)
+    // ^ works
     return (
       <div className="mainapp">
           <PlayerForm
@@ -56,12 +58,34 @@ class App extends Component {
             track2 = {this.state.track2}
             track3 = {this.state.track3}
             track4 = {this.state.track4}
+            handleVolumeSlide = {this.handleVolumeSlide}
+            handleRateSlide = {this.handleRateSlide}
+            handlePitchSlide = {this.handlePitchSlide}
             />
           <FileLibrary />
           <SavedSongs />
       </div>
     );
   }
+
+  handleVolumeSlide = (trackNum, e) => {
+    //return this.state[`track${trackNum}`].volumeLevel
+    console.log(e.target.value)
+    console.log(this.state[`track${trackNum}`].volumeLevel)
+    let currentTrackState = {...this.state[`track${trackNum}`]}
+    currentTrackState.volumeLevel = e.target.value
+    console.log("currentTrackState", currentTrackState)
+    this.setState({track1 : currentTrackState})
+  }
+
+  handleRateSlide = (trackNum, e) => {
+    return null
+  }
+
+  handlePitchSlide = (trackNum, e) => {
+    return null
+  }
+
 }
 
 export default App;
