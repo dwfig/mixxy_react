@@ -42,3 +42,12 @@ code {
   width: 100%;
   background-color: #dce4e5
 }
+
+.trackplayer{
+  background-color: white;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 4px;
+  border-color: #00cc66;
+  padding: 20px;
+}

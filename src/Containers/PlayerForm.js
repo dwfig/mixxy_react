@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import TrackPlayer from "../Components/TrackPlayer"
 
 class PlayerForm extends Component {
   //starting with class because it needs to be a form that submits
@@ -20,3 +21,5 @@ class PlayerForm extends Component {
     )
   }
 }
+
+export default PlayerForm

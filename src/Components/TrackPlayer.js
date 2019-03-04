@@ -9,7 +9,8 @@ class TrackPlayer extends Component {
     super(props)
     this.state = {
       rateSlider : "10",
-      pitchSlider: "0"
+      pitchSlider: "0",
+      volumeSlider: "-60"
     }
     //I'm currently using a slider from 1 to 50 and dividing it by 10
     // meaning users can pick speeds between 0.1 and 5.0
@@ -18,6 +19,7 @@ class TrackPlayer extends Component {
     let clipUrl = "https://upload.wikimedia.org/wikipedia/commons/1/1c/Guitare_electrique_arpege.ogg"
     this.player = new Tone.Player(clipUrl)
     let distortion = new Tone.Distortion(0.6)
+    this.trackVolume = new Tone.Volume(-60)
     this.pitchShift = new Tone.PitchShift(0)
     // these are defaults, we can put these in the constructor to start them here
     // or in Event Handlers to let the user determine whatever details we want to give them
@@ -28,7 +30,7 @@ class TrackPlayer extends Component {
     this.player.loopStart = 1;
     this.player.loopEnd=3;
     this.player.reverse=true;
-    this.player.chain(this.pitchShift, distortion, Tone.Master)
+    this.player.chain(this.trackVolume, this.pitchShift, distortion, Tone.Master)
 
   }
 
@@ -43,22 +45,32 @@ class TrackPlayer extends Component {
     console.log(e.target)
     this.setState({pitchSlider : e.target.value})
     this.pitchShift.pitch = (this.state.pitchSlider);
+  }
+
+  handleVolumeSlide = (e) => {
+    console.log(e.target)
+    this.setState({volumeSlider : e.target.value})
+    this.trackVolume.volume.value = (this.state.volumeSlider);
     //handleSlide is currently only wired up to the first slider on the page
   }
 
   render(){
     //keep Tone events out of here--pass variables only
     return (
-      <Fragment>
+      <div className = "trackplayer">
         <div className="slidecontainer">
           <span>Play-Rate</span>
-          <input type="range" min="1" max="50" value={this.state.rateSlider} className="slider" id="myRange" onChange={this.handleRateSlide} />
+          <input type="range" min="1" max="50" value={this.state.rateSlider} className="slider" id="myRange" onChange= {this.handleRateSlide} />
         </div>
         <div className="slidecontainer">
           <span>Pitch</span>
-          <input type="range" min="-12" max="12" value={this.state.pitchSlider} className="slider" id="myRange" onChange={this.handlePitchSlide} />
+          <input type="range" min="-12" max="12" value={this.state.pitchSlider} className="slider" id="myRange" onChange= {this.handlePitchSlide} />
         </div>
-      </ Fragment>
+        <div className="slidecontainer">
+          <span>Volume</span>
+          <input type="range" min="-60" max="20" value={this.state.volumeSlider} className="slider" id="myRange" onChange= {this.handleVolumeSlide} />
+        </div>
+      </ div>
     )
   }
 }
