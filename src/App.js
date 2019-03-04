@@ -6,6 +6,21 @@ import SavedSongs from "./Containers/SavedSongs"
 import FileLibrary from "./Containers/FileLibrary"
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      track1 :{
+        active: false,
+        playRate: "10",
+        pitchShift: "0",
+        volumeLevel: "-60",
+        trackIn: "0",
+        trackOut: "0",
+        url: ""
+      }
+    }
+  }
+
   render() {
     return (
       <div className="mainapp">

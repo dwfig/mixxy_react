@@ -17,6 +17,16 @@ code {
   width: 100%; /* Width of the outside container */
 }
 
+.slider{
+  width: 300px;
+  /*float: right;*/
+}
+
+.sliderlabel{
+  display: inline-block;
+  width: 100px;
+}
+
 .mainapp{
   display: grid;
   grid-template-areas: "playerform playerform filelibrary"
@@ -28,26 +38,29 @@ code {
 .playerform{
   grid-area: playerform;
   width: 100%;
-  background-color: #dce4e5
+  background-color: #f4f6f7;
+  margin:20px;
 }
 
 .savedsongs{
   grid-area: savedsongs;
   width: 100%;
-  background-color: #dce4e5
+  background-color: #f4f6f7;
+  margin:20px;
 }
 
 .filelibrary{
   grid-area: filelibrary;
   width: 100%;
-  background-color: #dce4e5
+  background-color: #f4f6f7;
+  margin:20px;
 }
 
 .trackplayer{
   background-color: white;
   border-style: solid;
   border-width: 3px;
-  border-radius: 4px;
+  border-radius: 8px;
   border-color: #00cc66;
   padding: 20px;
   margin: 20px;
