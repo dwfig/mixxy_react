@@ -10,7 +10,9 @@ class TrackPlayer extends Component {
     this.state = {
       rateSlider : "10",
       pitchSlider: "0",
-      volumeSlider: "-60.0"
+      volumeSlider: "-60.0",
+      inSlider: "20",
+      outSlider: "40"
     }
     //I'm currently using a slider from 1 to 50 and dividing it by 10
     // meaning users can pick speeds between 0.1 and 5.0
@@ -76,15 +78,21 @@ class TrackPlayer extends Component {
       <div className = "trackplayer">
         <div className="slidecontainer">
           <div className= "sliderlabel">Play-Rate</div>
-          <input type="range" min="1" max="50" value={this.state.rateSlider} className="slider" id="myRange" onChange= {this.handleRateSlide} />
+          <input type="range" min="1" max="50" value={this.state.rateSlider} className="slider" id="rate" onChange= {this.handleRateSlide} />
         </div>
         <div className="slidecontainer">
           <div className= "sliderlabel">Pitch</div>
-          <input type="range" min="-12" max="12" value={this.state.pitchSlider} className="slider" id="myRange" onChange= {this.handlePitchSlide} />
+          <input type="range" min="-12" max="12" value={this.state.pitchSlider} className="slider" id="pitch" onChange= {this.handlePitchSlide} />
         </div>
         <div className="slidecontainer">
           <div className= "sliderlabel">Volume</div>
-          <input type="range" min="-60" max="20" value={this.props.volumeLevel} className="slider" id="myRange" onChange={this.localVolumeSlide(), (e) => this.props.handleVolumeSlide(this.props.trackNum,e)} />
+          <input type="range" min="-60" max="20" value={this.props.volumeLevel} className="slider" id="volume" onChange={this.localVolumeSlide(), (e) => this.props.handleVolumeSlide(this.props.trackNum,e)} />
+        </div>
+        <div className="slidecontainer" id="iocontainer">
+          <div className= "sliderlabel">In-Out</div>
+          <input type="range" min="0" max="50" value="40" step="0.5" className="ioslider" id="in" onChange={null} />
+          <input type="range" min="0" max="50" value="20" step="0.5" className="ioslider" id="out" onChange={null} />
+          <div id="iolabel">0:00 - 0:00</div>
         </div>
       </ div>
     )
