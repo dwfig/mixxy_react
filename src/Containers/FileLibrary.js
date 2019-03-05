@@ -2,7 +2,11 @@ import React from 'react';
 import File from '../Components/File'
 
 const FileLibrary = props => {
+<<<<<<< HEAD
   // console.log(props);
+=======
+  //console.log(props.urls);
+>>>>>>> sliders
   const generateFiles = () => {
     return props.urls.map(url => {
       return (

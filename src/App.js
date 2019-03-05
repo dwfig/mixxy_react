@@ -8,6 +8,15 @@ import FileLibrary from "./Containers/FileLibrary"
 const URLAPI = 'http://localhost:3000/api/v1/urls'
 
 class App extends Component {
+<<<<<<< HEAD
+=======
+
+  componentDidMount() {
+    fetch(URLAPI)
+    .then(res => res.json())
+    .then(urls => this.setState({urls: urls}))
+  }
+>>>>>>> sliders
 
   constructor(props){
     super(props)
@@ -65,11 +74,15 @@ class App extends Component {
 
   handleVolumeSlide = (trackNum, e) => {
     //return this.state[`track${trackNum}`].volumeLevel
-    console.log(e.target.value)
-    console.log(this.state[`track${trackNum}`].volumeLevel)
+    // console.log(e.target.value)
+    // console.log(this.state[`track${trackNum}`].volumeLevel)
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.volumeLevel = e.target.value
+<<<<<<< HEAD
     console.log("currentTrackState", currentTrackState)
+=======
+    // console.log("currentTrackState", currentTrackState)
+>>>>>>> sliders
     this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
