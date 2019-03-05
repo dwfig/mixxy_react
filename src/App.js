@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import PlayerForm from './Containers/PlayerForm'
 import SavedSongs from "./Containers/SavedSongs"
@@ -63,12 +62,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    fetch(URLAPI)
-    .then(res => res.json())
-    .then(urls => this.setState({urls: urls}))
-  }
-
   handleVolumeSlide = (trackNum, e) => {
     // accesses tracks based on the trackNum prop passed down to each player
     let currentTrackState = {...this.state[`track${trackNum}`]}
@@ -78,7 +71,7 @@ class App extends Component {
     this.setState({[`track${trackNum}`] : currentTrackState})
     // puts the dummy object back in place of the original state
     // this is repeated for all slider handlers
-    // TODO: refactor into one handler that takes a relevant argument??
+    // TODO: refactor into ONE handler that takes a relevant argument??
   }
 
   handleRateSlide = (trackNum, e) => {
