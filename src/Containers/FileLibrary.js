@@ -2,13 +2,14 @@ import React from 'react';
 import File from '../Components/File'
 
 const FileLibrary = props => {
-  console.log(props.urls);
+  // console.log(props);
   const generateFiles = () => {
     return props.urls.map(url => {
       return (
         < File
           key={url.id}
           url={url}
+          handleFileInsertionToTrackPlayer={props.handleFileInsertionToTrackPlayer}
         />
       )
     })//end of map

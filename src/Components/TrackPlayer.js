@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 //import React, { Fragment } from 'react';
 import Tone from 'tone';
 
@@ -60,20 +60,21 @@ class TrackPlayer extends Component {
   //   //handleSlide is currently only wired up to the first slider on the page
   // }
   localVolumeSlide(){
-    console.log("a ",this.trackVolume.volume.value)
+    // console.log("a ",this.trackVolume.volume.value)
     let volumeFloat = parseFloat(this.props.track.volumeLevel)
-    console.log("volumeFloat ",typeof volumeFloat, volumeFloat)
+    // console.log("volumeFloat ",typeof volumeFloat, volumeFloat)
     this.trackVolume.volume.value = volumeFloat
   }
 
   render(){
-    console.log("c ",this.props)
+    // console.log("c ",this.props)
     //keep Tone events out of here--pass variables only
     //console.log("track ", this.props.trackNum, this.props.track)
     //console.log(this.props.handleVolumeSlide)
     //this.localVolumeSlide()
     return (
       <div className = "trackplayer">
+        <div>{this.props.track.name}</div>
         <div className="slidecontainer">
           <div className= "sliderlabel">Play-Rate</div>
           <input type="range" min="1" max="50" value={this.state.rateSlider} className="slider" id="myRange" onChange= {this.handleRateSlide} />
@@ -86,6 +87,7 @@ class TrackPlayer extends Component {
           <div className= "sliderlabel">Volume</div>
           <input type="range" min="-60" max="20" value={this.props.volumeLevel} className="slider" id="myRange" onChange={this.localVolumeSlide(), (e) => this.props.handleVolumeSlide(this.props.trackNum,e)} />
         </div>
+        <button className="clearBtn">Clear</button>
       </ div>
     )
   }
