@@ -33,6 +33,7 @@ class PlayerForm extends Component {
           trackNum = {4}
           handleVolumeSlide={this.props.handleVolumeSlide}
           />
+        <button onClick={this.props.handleSongSave}>Save As a Song</button>
       </div>
     )
   }

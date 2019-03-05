@@ -133,6 +133,16 @@ div#iocontainer input::-webkit-slider-thumb{
   margin: 20px;
 }
 
+.song{
+  background-color: white;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 4px;
+  border-color: #00cc66;
+  padding: 20px;
+  margin: 20px;
+}
+
 .iolabel{
   display: inline-block;
 }

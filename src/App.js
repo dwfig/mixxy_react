@@ -6,22 +6,15 @@ import SavedSongs from "./Containers/SavedSongs"
 import FileLibrary from "./Containers/FileLibrary"
 
 const URLAPI = 'http://localhost:3000/api/v1/urls'
+const SONGAPI = 'http://localhost:3000/api/v1/songs'
 
 class App extends Component {
-<<<<<<< HEAD
-=======
-
-  componentDidMount() {
-    fetch(URLAPI)
-    .then(res => res.json())
-    .then(urls => this.setState({urls: urls}))
-  }
->>>>>>> sliders
 
   constructor(props){
     super(props)
     this.state = {
       urls: [],
+      songs: [],
       clicks: 0,
       track1 :{
         active: false,
@@ -70,6 +63,10 @@ class App extends Component {
     fetch(URLAPI)
     .then(res => res.json())
     .then(urls => this.setState({urls: urls}))
+
+    fetch(SONGAPI)
+    .then(res => res.json())
+    .then(songs => this.setState({songs: songs}))
   }
 
   handleVolumeSlide = (trackNum, e) => {
@@ -78,11 +75,8 @@ class App extends Component {
     // console.log(this.state[`track${trackNum}`].volumeLevel)
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.volumeLevel = e.target.value
-<<<<<<< HEAD
-    console.log("currentTrackState", currentTrackState)
-=======
     // console.log("currentTrackState", currentTrackState)
->>>>>>> sliders
+    // console.log("currentTrackState", currentTrackState)
     this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
@@ -102,7 +96,7 @@ class App extends Component {
     if(this.state.clicks === 1){
       let currentSample = {...this.state[`track${this.state.clicks}`]}
       currentSample.url = e.target.dataset.url
-      currentSample.name = e.target.dataset.name
+      currentSample.name = e.target.dataset.namez
       return this.setState({
         [`track${this.state.clicks}`]: currentSample
       })
@@ -132,7 +126,12 @@ class App extends Component {
     }
   }
 
+  handleSongSave = (e) => {
+    console.log('click', e);
+  }
+
   render() {
+    console.log(this.state.songs, this.state.urls);
     //console.log(this.state[`track${1}`].volumeLevel)
     // ^ works
     return (
@@ -145,12 +144,17 @@ class App extends Component {
             handleVolumeSlide = {this.handleVolumeSlide}
             handleRateSlide = {this.handleRateSlide}
             handlePitchSlide = {this.handlePitchSlide}
+            handleSongSave={this.handleSongSave}
             />
           <FileLibrary
             urls={this.state.urls}
             handleFileInsertionToTrackPlayer={this.handleFileInsertionToTrackPlayer}
           />
-          <SavedSongs />
+          <SavedSongs
+            tracks={this.state.tracks}
+            songs={this.state.songs}
+            songtracks={this.state.songtracks}
+          />
       </div>
     );
   }
