@@ -17,21 +17,37 @@ class PlayerForm extends Component {
           track = {this.props.track1}
           trackNum = {1}
           handleVolumeSlide={this.props.handleVolumeSlide}
+          handleRateSlide={this.props.handleRateSlide}
+          handlePitchSlide={this.props.handlePitchSlide}
+          handleInSlide = {this.props.handleInSlide}
+          handleOutSlide = {this.props.handleOutSlide}
           />
         <TrackPlayer
           track = {this.props.track2}
           trackNum = {2}
           handleVolumeSlide={this.props.handleVolumeSlide}
+          handleRateSlide={this.props.handleRateSlide}
+          handlePitchSlide={this.props.handlePitchSlide}
+          handleInSlide = {this.props.handleInSlide}
+          handleOutSlide = {this.props.handleOutSlide}
           />
         <TrackPlayer
           track = {this.props.track3}
           trackNum = {3}
           handleVolumeSlide={this.props.handleVolumeSlide}
+          handleRateSlide={this.props.handleRateSlide}
+          handlePitchSlide={this.props.handlePitchSlide}
+          handleInSlide = {this.props.handleInSlide}
+          handleOutSlide = {this.props.handleOutSlide}
           />
         <TrackPlayer
           track = {this.props.track4}
           trackNum = {4}
           handleVolumeSlide={this.props.handleVolumeSlide}
+          handleRateSlide={this.props.handleRateSlide}
+          handlePitchSlide={this.props.handlePitchSlide}
+          handleInSlide = {this.props.handleInSlide}
+          handleOutSlide = {this.props.handleOutSlide}
           />
       </div>
     )

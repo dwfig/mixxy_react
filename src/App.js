@@ -8,15 +8,12 @@ import FileLibrary from "./Containers/FileLibrary"
 const URLAPI = 'http://localhost:3000/api/v1/urls'
 
 class App extends Component {
-<<<<<<< HEAD
-=======
 
   componentDidMount() {
     fetch(URLAPI)
     .then(res => res.json())
     .then(urls => this.setState({urls: urls}))
   }
->>>>>>> sliders
 
   constructor(props){
     super(props)
@@ -73,25 +70,39 @@ class App extends Component {
   }
 
   handleVolumeSlide = (trackNum, e) => {
-    //return this.state[`track${trackNum}`].volumeLevel
-    // console.log(e.target.value)
-    // console.log(this.state[`track${trackNum}`].volumeLevel)
+    // accesses tracks based on the trackNum prop passed down to each player
     let currentTrackState = {...this.state[`track${trackNum}`]}
+    // creates a dummy object currentTrackState and replaces volumeLevel
+    // with the value of the slider
     currentTrackState.volumeLevel = e.target.value
-<<<<<<< HEAD
-    console.log("currentTrackState", currentTrackState)
-=======
-    // console.log("currentTrackState", currentTrackState)
->>>>>>> sliders
     this.setState({[`track${trackNum}`] : currentTrackState})
+    // puts the dummy object back in place of the original state
+    // this is repeated for all slider handlers
+    // TODO: refactor into one handler that takes a relevant argument??
   }
 
   handleRateSlide = (trackNum, e) => {
-    return null
+    let currentTrackState = {...this.state[`track${trackNum}`]}
+    currentTrackState.playRate = e.target.value
+    this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
   handlePitchSlide = (trackNum, e) => {
-    return null
+    let currentTrackState = {...this.state[`track${trackNum}`]}
+    currentTrackState.pitchShift = e.target.value
+    this.setState({[`track${trackNum}`] : currentTrackState})
+  }
+
+  handleInSlide = (trackNum, e) => {
+    let currentTrackState = {...this.state[`track${trackNum}`]}
+    currentTrackState.trackIn = e.target.value
+    this.setState({[`track${trackNum}`] : currentTrackState})
+  }
+
+  handleOutSlide = (trackNum, e) => {
+    let currentTrackState = {...this.state[`track${trackNum}`]}
+    currentTrackState.trackOut = e.target.value
+    this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
   handleFileInsertionToTrackPlayer = (e) => {
@@ -145,6 +156,8 @@ class App extends Component {
             handleVolumeSlide = {this.handleVolumeSlide}
             handleRateSlide = {this.handleRateSlide}
             handlePitchSlide = {this.handlePitchSlide}
+            handleInSlide = {this.handleInSlide}
+            handleOutSlide = {this.handleOutSlide}
             />
           <FileLibrary
             urls={this.state.urls}
