@@ -22,10 +22,6 @@ code {
   /*float: right;*/
 }
 
-#in{
-
-}
-
 .ioslider#out::-webkit-slider-thumb {
   background: #c10055;
 }
@@ -46,6 +42,7 @@ div#iocontainer input{
   appearance: none;
   background: #d3d3d3;
   height: 16px;
+  border-radius: 4px;
 }
 
 div#iocontainer input::-webkit-slider-thumb{
@@ -56,10 +53,10 @@ div#iocontainer input::-webkit-slider-thumb{
 
  -webkit-appearance: none;
   appearance: none;
-  width: 10px;
+  width: 8px;
   height: 24px;
   border: 0;
- background-image: url("images/out.png");
+  /*background-image: url("images/out.png");*/
   background: #009E66
 }
 
@@ -94,13 +91,13 @@ div#iocontainer input::-webkit-slider-thumb{
   width: 100%;
   background-color: #f4f6f7;
   margin:20px;
-  height: 60vh;
+  height: 62vh;
 }
 
 .savedsongs{
   grid-area: savedsongs;
   background-color: #f4f6f7;
-  margin:20px 0px 20px 20px;
+  margin:0px 0px 20px 20px;
   height: 25vh;
   width: 100%;
   display: block;

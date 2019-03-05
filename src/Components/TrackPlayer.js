@@ -62,14 +62,26 @@ class TrackPlayer extends Component {
   //   //handleSlide is currently only wired up to the first slider on the page
   // }
   localVolumeSlide(){
-    console.log("a ",this.trackVolume.volume.value)
+    //console.log("a ",this.trackVolume.volume.value)
     let volumeFloat = parseFloat(this.props.track.volumeLevel)
-    console.log("volumeFloat ",typeof volumeFloat, volumeFloat)
+    //console.log("volumeFloat ",typeof volumeFloat, volumeFloat)
     this.trackVolume.volume.value = volumeFloat
   }
 
+  handleInSlide= (e) =>{
+    this.setState({inSlider : e.target.value})
+    this.player.loopStart = (this.state.inSlider);
+  //  console.log(e.target.value, this.state.inSlider)
+  }
+
+  handleOutSlide= (e) =>{
+    this.setState({outSlider : e.target.value})
+    this.player.loopEnd = (this.state.outSlider);
+  //  console.log(e.target.value, this.state.outSlider)
+  }
+
   render(){
-    console.log("c ",this.props)
+    //console.log("c ",this.props)
     //keep Tone events out of here--pass variables only
     //console.log("track ", this.props.trackNum, this.props.track)
     //console.log(this.props.handleVolumeSlide)
@@ -90,8 +102,8 @@ class TrackPlayer extends Component {
         </div>
         <div className="slidecontainer" id="iocontainer">
           <div className= "sliderlabel">In-Out</div>
-          <input type="range" min="0" max="50" value="40" step="0.5" className="ioslider" id="in" onChange={null} />
-          <input type="range" min="0" max="50" value="20" step="0.5" className="ioslider" id="out" onChange={null} />
+          <input type="range" min="0" max="50" value={this.state.inSlider} step="0.5" className="ioslider" id="in" onChange={this.handleInSlide} />
+          <input type="range" min="0" max="50" value={this.state.outSlider} step="0.5" className="ioslider" id="out" onChange={this.handleOutSlide} />
           <div id="iolabel">0:00 - 0:00</div>
         </div>
       </ div>

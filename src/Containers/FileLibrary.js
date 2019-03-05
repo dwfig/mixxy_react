@@ -2,7 +2,7 @@ import React from 'react';
 import File from '../Components/File'
 
 const FileLibrary = props => {
-  console.log(props.urls);
+  //console.log(props.urls);
   const generateFiles = () => {
     return props.urls.map(url => {
       return (

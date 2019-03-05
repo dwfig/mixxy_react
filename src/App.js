@@ -80,12 +80,12 @@ class App extends Component {
 
   handleVolumeSlide = (trackNum, e) => {
     //return this.state[`track${trackNum}`].volumeLevel
-    console.log(e.target.value)
-    console.log(this.state[`track${trackNum}`].volumeLevel)
+    // console.log(e.target.value)
+    // console.log(this.state[`track${trackNum}`].volumeLevel)
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.volumeLevel = e.target.value
-    console.log("currentTrackState", currentTrackState)
-    this.setState({track1 : currentTrackState})
+    // console.log("currentTrackState", currentTrackState)
+    this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
   handleRateSlide = (trackNum, e) => {
