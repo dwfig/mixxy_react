@@ -88,7 +88,6 @@ class App extends Component {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.playRate = e.target.value
     this.setState({[`track${trackNum}`] : currentTrackState})
-    console.log("app ", this.state[`track${trackNum}`])
   }
 
   handlePitchSlide = (trackNum, e) => {
@@ -133,8 +132,6 @@ class App extends Component {
   }
 
   render() {
-    //console.log("app ", this.state)
-    // ^ works
     return (
       <div className="mainapp">
           <PlayerForm
@@ -145,12 +142,9 @@ class App extends Component {
             handleVolumeSlide = {this.handleVolumeSlide}
             handleRateSlide = {this.handleRateSlide}
             handlePitchSlide = {this.handlePitchSlide}
-<<<<<<< HEAD
             handleInSlide = {this.handleInSlide}
             handleOutSlide = {this.handleOutSlide}
-=======
             handleSongSave={this.handleSongSave}
->>>>>>> clear_btn2
             />
           <FileLibrary
             urls={this.state.urls}

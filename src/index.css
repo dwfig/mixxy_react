@@ -102,6 +102,12 @@ div#iocontainer input::-webkit-slider-thumb{
   width: 100%;
   display: block;
   position: relative;
+  overflow: scroll;
+}
+
+.songeditbutton{
+  float:right;
+  margin-top: -20px;
 }
 
 .filelibrary{

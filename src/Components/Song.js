@@ -11,7 +11,7 @@ const Song = (props) => {
         {props.song.tracks[2].name}
         {props.song.tracks[3].name}
       </div>
-      <button>Edit?? Btn</button>
+      <button class="songeditbutton">Edit?? Btn</button>
     </div>
   )
 
