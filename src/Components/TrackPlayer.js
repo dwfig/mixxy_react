@@ -7,13 +7,6 @@ import Tone from 'tone';
 class TrackPlayer extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      rateSlider : "10",
-      pitchSlider: "0",
-      volumeSlider: "-60.0",
-      inSlider: "20",
-      outSlider: "40"
-    }
     //I'm currently using a slider from 1 to 50 and dividing it by 10
     // meaning users can pick speeds between 0.1 and 5.0
     // one real easy way to implement reverse would be to make this value go negative I think
@@ -71,6 +64,14 @@ class TrackPlayer extends Component {
       //console.log("hit", prevProps.track.pitchShift, this.props.track.pitchShift)
       let pitchFloat = parseFloat(this.props.track.pitchShift)
       this.pitchShift.pitch = pitchFloat
+    }
+    // if (prevProps.track.length !== this.props.track.length){
+    //   console.log("success")
+    // }
+    // above commented out because I think it can all be handled within URLchange
+    if (prevProps.track.url !== this.props.track.url){
+      console.log('yes')
+      this.player.load(this.props.track.url)
     }
     if (prevProps.track.trackIn !== this.props.track.trackIn){
       let inFloat = parseFloat(this.props.track.trackIn)

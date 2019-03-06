@@ -27,7 +27,8 @@ class App extends Component {
         trackIn: "0",
         trackOut: "0",
         name: "",
-        url: ""
+        url: "",
+        length: "0"
       },
       track2 :{
         active: false,
@@ -37,7 +38,8 @@ class App extends Component {
         trackIn: "0",
         trackOut: "0",
         name: "",
-        url: ""
+        url: "",
+        length: "0"
       },
       track3 :{
         active: false,
@@ -47,7 +49,8 @@ class App extends Component {
         trackIn: "0",
         trackOut: "0",
         name: "",
-        url: ""
+        url: "",
+        length: "0"
       },
       track4 :{
         active: false,
@@ -57,7 +60,8 @@ class App extends Component {
         trackIn: "0",
         trackOut: "0",
         name: "",
-        url: ""
+        url: "",
+        length: "0"
       },
     }
   }
@@ -103,31 +107,12 @@ class App extends Component {
     this.setState({clicks: this.state.clicks+= 1})
     console.log(this.state.clicks);
     console.log(this.state[`track${this.state.clicks}`]);
-    if(this.state.clicks === 1){
+
+    if(0 < this.state.clicks && this.state.clicks < 5){
       let currentSample = {...this.state[`track${this.state.clicks}`]}
       currentSample.url = e.target.dataset.url
       currentSample.name = e.target.dataset.name
-      return this.setState({
-        [`track${this.state.clicks}`]: currentSample
-      })
-    } else if(this.state.clicks === 2){
-      let currentSample = {...this.state[`track${this.state.clicks}`]}
-      currentSample.url = e.target.dataset.url
-      currentSample.name = e.target.dataset.name
-      return this.setState({
-        [`track${this.state.clicks}`]: currentSample
-      })
-    } else if(this.state.clicks === 3){
-      let currentSample = {...this.state[`track${this.state.clicks}`]}
-      currentSample.url = e.target.dataset.url
-      currentSample.name = e.target.dataset.name
-      return this.setState({
-        [`track${this.state.clicks}`]: currentSample
-      })
-    } else if(this.state.clicks === 4){
-      let currentSample = {...this.state[`track${this.state.clicks}`]}
-      currentSample.url = e.target.dataset.url
-      currentSample.name = e.target.dataset.name
+      currentSample.length = e.target.dataset.length
       return this.setState({
         [`track${this.state.clicks}`]: currentSample
       })

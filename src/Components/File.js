@@ -6,8 +6,12 @@ import React from 'react';
     return (
       <div className="file">
         {props.url.name}
-        <button data-url={props.url.link} data-name={props.url.name}
-          onClick={props.handleFileInsertionToTrackPlayer}> Add Me
+        <button
+          data-url={props.url.link}
+          data-name={props.url.name}
+          data-length={props.url.length}
+          onClick={props.handleFileInsertionToTrackPlayer}
+          > Add Me
         </button>
       </div>
     )
