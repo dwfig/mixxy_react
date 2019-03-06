@@ -7,7 +7,7 @@ import Tone from 'tone';
 class TrackPlayer extends Component {
   constructor(props){
     super(props)
-    let clipUrl = "https://upload.wikimedia.org/wikipedia/commons/1/1c/Guitare_electrique_arpege.ogg"
+    let clipUrl = ""
     //TODO: change above to an empty string——it's fine in practice because it's
     // always treated as having length 0 and therefore unlistenable
 
@@ -85,8 +85,9 @@ class TrackPlayer extends Component {
     // console.log(this.props.handleVolumeSlide)
     // console.log(this.props.handleRateSlide)
     return (
-      <div className = "trackplayer">
-        <div>{this.props.track.name}</div>
+      <div className = "trackplayer" id={this.props.track.active ? "active" : "inactive"}>
+        <div className = "tracklabel">{this.props.track.name}</div>
+        <button className="clearBtn">Clear</button>
 
       <div className="slidecontainer">
           <div className= "sliderlabel">Play-Rate</div>
@@ -134,7 +135,6 @@ class TrackPlayer extends Component {
             />
           <div id="iolabel">{parseFloat(this.props.track.trackIn).toFixed(1).padStart(4,"0")} - {parseFloat(this.props.track.trackOut).toFixed(1).padStart(4,"0")}</div>
         </div>
-        <button className="clearBtn">Clear</button>
       </ div>
     )
   }

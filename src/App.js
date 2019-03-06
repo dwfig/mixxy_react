@@ -108,14 +108,21 @@ class App extends Component {
     this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
+  // Right now : incrememts a variable "clicks" when user presses add file
+  // in FileLibrary——can't clear
+  // Goal: file insertion changes "active" status of the first inactive track
+  // clearing will make a track inactive
+  //
+
   handleFileInsertionToTrackPlayer = (e) => {
-    console.log(this.state.clicks, e.target.dataset.url)
+    //console.log(this.state.clicks, e.target.dataset.url)
     this.setState({clicks: this.state.clicks+= 1})
-    console.log(this.state.clicks);
-    console.log(this.state[`track${this.state.clicks}`]);
+    //console.log(this.state.clicks);
+    //console.log(this.state[`track${this.state.clicks}`]);
 
     if(0 < this.state.clicks && this.state.clicks < 5){
       let currentSample = {...this.state[`track${this.state.clicks}`]}
+      currentSample.active = true
       currentSample.url = e.target.dataset.url
       currentSample.name = e.target.dataset.name
       currentSample.length = e.target.dataset.length

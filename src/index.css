@@ -110,6 +110,25 @@ div#iocontainer input::-webkit-slider-thumb{
   margin-top: -20px;
 }
 
+.clearBtn{
+  float: right;
+  /* margin-top: -100px; */
+}
+
+.addfilebutton{
+  background-color: white;
+  border-color: #00CC66;
+  border-style: solid;
+  border-width: 2px;
+  padding: 8px;
+  border-radius: 20px;
+  float:right;
+  margin-top: -10px;
+  color: #009E66;
+  font-style: italic;
+  cursor: pointer;
+}
+
 .filelibrary{
   grid-area: filelibrary;
   background-color: #f4f6f7;
@@ -127,6 +146,19 @@ div#iocontainer input::-webkit-slider-thumb{
   border-color: #00cc66;
   padding: 20px;
   margin: 20px;
+}
+
+.tracklabel{
+  font-size: 24px;
+  font-weight: bold;
+  font-style: italic;
+  color: #008556
+}
+
+#inactive{
+  /* border-style: dashed; */
+  background-color: #DDDDDD;
+  color: #FFFFFF
 }
 
 .file{
