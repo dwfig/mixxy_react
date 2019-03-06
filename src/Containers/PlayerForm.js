@@ -11,8 +11,13 @@ class PlayerForm extends Component {
 
   //form will need NAME field and SUBMIT button
   render(){
+    console.log(this.props);
     return (
       <div className = "playerform">
+        <form>
+          Song Name:
+          <input type="text" name="songname" value={this.props.song_name} onChange={(e) => this.props.handleSongName(e)}/>
+        </form>
         <TrackPlayer
           track = {this.props.track1}
           trackNum = {1}
@@ -49,7 +54,7 @@ class PlayerForm extends Component {
           handleInSlide = {this.props.handleInSlide}
           handleOutSlide = {this.props.handleOutSlide}
           />
-        <button onClick={this.props.handleSongSave}>Save As a Song</button>
+        <button onClick={this.props.handleSaveSongs}>Save As a Song</button>
       </div>
     )
   }

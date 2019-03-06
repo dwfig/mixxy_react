@@ -8,6 +8,7 @@ import React from 'react';
         {props.url.name}
         <button
           data-url={props.url.link}
+          data-urlid = {props.url.id}
           data-name={props.url.name}
           data-length={props.url.length}
           onClick={props.handleFileInsertionToTrackPlayer}

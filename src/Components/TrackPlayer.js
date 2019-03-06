@@ -41,7 +41,6 @@ class TrackPlayer extends Component {
   //   this.player.playbackRate = (this.state.rateSlider/10);
   //   //handleSlide is currently only wired up to the first slider on the page
   // }
-<<<<<<< HEAD
 
   // handlePitchSlide = (e) => {
   //   //console.log(e.target)
@@ -92,13 +91,6 @@ class TrackPlayer extends Component {
       this.player.loopEnd = this.props.track.trackOut
       this.player.reverse = false;
     }
-=======
-  localVolumeSlide(){
-    // console.log("a ",this.trackVolume.volume.value)
-    let volumeFloat = parseFloat(this.props.track.volumeLevel)
-    // console.log("volumeFloat ",typeof volumeFloat, volumeFloat)
-    this.trackVolume.volume.value = volumeFloat
->>>>>>> clear_btn2
   }
 
   handleInSlide= (e) =>{
@@ -114,11 +106,7 @@ class TrackPlayer extends Component {
   }
 
   render(){
-<<<<<<< HEAD
     //console.log("c ",this.props)
-=======
-    // console.log("c ",this.props)
->>>>>>> clear_btn2
     //keep Tone events out of here--pass variables only
     //console.log("track ", this.props.trackNum, this.props.track)
     //console.log(this.props.handleVolumeSlide)
