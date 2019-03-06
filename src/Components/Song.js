@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Song = (props) => {
-  console.log(props);
+  //console.log(props);
   return (
     <div className="song">
       {props.song.name}
@@ -11,7 +11,7 @@ const Song = (props) => {
         {props.song.tracks[2].name}
         {props.song.tracks[3].name}
       </div>
-      <button class="songeditbutton">Edit?? Btn</button>
+      <button className="songeditbutton">Edit?? Btn</button>
     </div>
   )
 

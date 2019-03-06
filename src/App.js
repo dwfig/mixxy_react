@@ -119,17 +119,50 @@ class App extends Component {
     this.setState({clicks: this.state.clicks+= 1})
     //console.log(this.state.clicks);
     //console.log(this.state[`track${this.state.clicks}`]);
+    if(this.state.track1.active === false){
+      let dummyTrack = {...this.state.track1}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({track1 : dummyTrack})
+    }
+    if(this.state.track2.active === false){
+      let dummyTrack = {...this.state.track2}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({track2 : dummyTrack})
+    }
+    if(this.state.track3.active === false){
+      let dummyTrack = {...this.state.track3}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({track3 : dummyTrack})
+    }
+    if(this.state.track4.active === false){
+      let dummyTrack = {...this.state.track4}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({track4: dummyTrack})
+    }
 
-    if(0 < this.state.clicks && this.state.clicks < 5){
-      let currentSample = {...this.state[`track${this.state.clicks}`]}
-      currentSample.active = true
-      currentSample.url = e.target.dataset.url
-      currentSample.name = e.target.dataset.name
-      currentSample.length = e.target.dataset.length
-      return this.setState({
-        [`track${this.state.clicks}`]: currentSample
-      })
-    } else {
+    // if(0 < this.state.clicks && this.state.clicks < 5){
+    //   let currentSample = {...this.state[`track${this.state.clicks}`]}
+    //   currentSample.active = true
+    //   currentSample.url = e.target.dataset.url
+    //   currentSample.name = e.target.dataset.name
+    //   currentSample.length = e.target.dataset.length
+    //   return this.setState({
+    //     [`track${this.state.clicks}`]: currentSample
+    //   })
+    // }
+    else {
       return null
     }
   }

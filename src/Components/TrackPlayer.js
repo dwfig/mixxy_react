@@ -61,6 +61,7 @@ class TrackPlayer extends Component {
     if (prevProps.track.trackIn !== this.props.track.trackIn){
       let inFloat = parseFloat(this.props.track.trackIn)
       this.player.loopStart = inFloat
+      this.player.restart()
     }
     if (prevProps.track.trackOut !== this.props.track.trackOut){
       let outFloat = parseFloat(this.props.track.trackOut)
@@ -70,6 +71,7 @@ class TrackPlayer extends Component {
       this.player.loopStart = this.props.track.trackOut
       this.player.loopEnd = this.props.track.trackIn
       this.player.reverse = true;
+      this.player.restart()
     }
     if (this.props.track.trackOut > this.props.track.trackIn){
       this.player.loopStart = this.props.track.trackIn
