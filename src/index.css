@@ -111,8 +111,17 @@ div#iocontainer input::-webkit-slider-thumb{
 }
 
 .clearBtn{
-  float: right;
-  /* margin-top: -100px; */
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.0);
+  border-color: #00CC66;
+  border-style: solid;
+  border-width: 2px;
+  padding: 8px;
+  border-radius: 20px;
+  float:right;
+  color: #009E66;
+  font-style: italic;
+  cursor: pointer;
 }
 
 .addfilebutton{
@@ -155,10 +164,31 @@ div#iocontainer input::-webkit-slider-thumb{
   color: #008556
 }
 
+.inactivetracklabel{
+  font-size: 24px;
+  font-weight: bold;
+  font-style: italic;
+  color: #FFFFFF
+}
+
 #inactive{
   /* border-style: dashed; */
+  border-color: #74bf99;
   background-color: #DDDDDD;
   color: #FFFFFF
+}
+
+.inactiveClearBtn{
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.0);
+  border-color: #EEEEEE;
+  border-style: solid;
+  border-width: 2px;
+  padding: 8px;
+  border-radius: 20px;
+  float:right;
+  color: #EEEEEE;
+  font-style: italic;
 }
 
 .file{

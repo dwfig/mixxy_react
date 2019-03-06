@@ -114,6 +114,23 @@ class App extends Component {
   // clearing will make a track inactive
   //
 
+  handleTrackClear = (e, trackNum) =>{
+    console.log(e, trackNum)
+    let resetTrack = {
+      active: false,
+      playRate: "10",
+      pitchShift: "0",
+      volumeLevel: "-60.0",
+      trackIn: "0",
+      trackOut: "0",
+      name: "",
+      url: "",
+      length: "0"
+    }
+    // console.log(resetTrack)
+    this.setState({[`track${trackNum}`] : resetTrack})
+  }
+
   handleFileInsertionToTrackPlayer = (e) => {
     //console.log(this.state.clicks, e.target.dataset.url)
     this.setState({clicks: this.state.clicks+= 1})
@@ -185,6 +202,7 @@ class App extends Component {
             handleInSlide = {this.handleInSlide}
             handleOutSlide = {this.handleOutSlide}
             handleSongSave={this.handleSongSave}
+            handleTrackClear = {this.handleTrackClear}
             />
           <FileLibrary
             urls={this.state.urls}

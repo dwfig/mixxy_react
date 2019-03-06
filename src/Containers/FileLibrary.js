@@ -16,7 +16,6 @@ const FileLibrary = props => {
 
   return(
     <div className = "filelibrary">
-      filelibrary:
       {generateFiles()}
     </div>
   )

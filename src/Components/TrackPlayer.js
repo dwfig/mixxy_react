@@ -81,15 +81,18 @@ class TrackPlayer extends Component {
   }
 
   render(){
-    console.log("render ",this.props.track)
+    //console.log("render ",this.props.track)
     //keep Tone events out of here!
     // console.log("track ", this.props.trackNum, this.props.track)
     // console.log(this.props.handleVolumeSlide)
     // console.log(this.props.handleRateSlide)
     return (
       <div className = "trackplayer" id={this.props.track.active ? "active" : "inactive"}>
-        <div className = "tracklabel">{this.props.track.name}</div>
-        <button className="clearBtn">Clear</button>
+        <div className = {this.props.track.active ? "tracklabel" : "inactivetracklabel"}>{this.props.track.active ? this.props.track.name : "empty track"}</div>
+        <button
+          onClick={(e) => this.props.handleTrackClear(e, this.props.trackNum)}
+          className={this.props.track.active ? "clearBtn" : "inactiveClearBtn"}
+          >Clear</button>
 
       <div className="slidecontainer">
           <div className= "sliderlabel">Play-Rate</div>
