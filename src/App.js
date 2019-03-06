@@ -378,6 +378,7 @@ class App extends Component {
   render() {
     return (
       <div className="mainapp">
+          <div className="header">mixlr~~~</div>
           <PlayerForm
             track1 = {this.state.track1}
             track2 = {this.state.track2}
