@@ -11,11 +11,8 @@ class PlayerForm extends Component {
 
   //form will need NAME field and SUBMIT button
   render(){
-<<<<<<< HEAD
     console.log("player form ", this.state)
-=======
     // console.log(this.props);
->>>>>>> fea1256fad0f2ecf6e128940c7132255b841d9ab
     return (
       <div className = "playerform">
         <form>

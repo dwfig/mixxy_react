@@ -30,27 +30,13 @@ class TrackPlayer extends Component {
     this.player.chain(this.trackVolume, this.pitchShift, Tone.Master)
 
   }
-<<<<<<< HEAD
   // //THESE are about to be moved to App - they will look for the track that matches trackNum
   // // and change the state up there
   // // they can also be refactored into ONE function that receives trackNum and sliderType
   // // if it also converts its output based on which state obj it's passing to
   //
-  // handleRateSlide = (e) => {
-  //   //console.log(e.target)
-  //   this.setState({rateSlider : e.target.value})
-  //   this.player.playbackRate = (this.state.rateSlider/10);
-  //   //handleSlide is currently only wired up to the first slider on the page
-  // }
 
-  // handlePitchSlide = (e) => {
-  //   //console.log(e.target)
-  //   this.setState({pitchSlider : e.target.value})
-  //   this.pitchShift.pitch = (this.state.pitchSlider);
-  // }
-=======
   // local event handlers removed
->>>>>>> css-and-clear
 
   componentDidUpdate(prevProps){
     //console.log("componentDidUpdate",prevProps.track, this.props.track)
@@ -102,7 +88,6 @@ class TrackPlayer extends Component {
       this.player.loopEnd = this.props.track.trackOut
       this.player.reverse = false;
     }
-<<<<<<< HEAD
   }
 
   handleInSlide= (e) =>{
@@ -118,32 +103,7 @@ class TrackPlayer extends Component {
   }
 
   render(){
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    //console.log("c ",this.props)
-=======
-    // console.log("c ",this.props)
->>>>>>> clear_btn2
-=======
-    console.log("render ",this.props.track)
->>>>>>> lengths
-=======
-    //console.log("c ",this.props)
->>>>>>> fea1256fad0f2ecf6e128940c7132255b841d9ab
-    //keep Tone events out of here--pass variables only
-    //console.log("track ", this.props.trackNum, this.props.track)
-    //console.log(this.props.handleVolumeSlide)
-=======
-  }
-
-  render(){
-    //console.log("render ",this.props.track)
     //keep Tone events out of here!
-    // console.log("track ", this.props.trackNum, this.props.track)
-    // console.log(this.props.handleVolumeSlide)
->>>>>>> css-and-clear
-    // console.log(this.props.handleRateSlide)
     return (
       <div className = "trackplayer" id={this.props.track.active ? "active" : "inactive"}>
         <div className = {this.props.track.active ? "tracklabel" : "inactivetracklabel"}>{this.props.track.active ? this.props.track.name : "empty track"}</div>

@@ -90,11 +90,6 @@ class App extends Component {
     // creates a dummy object currentTrackState and replaces volumeLevel
     // with the value of the slider
     currentTrackState.volumeLevel = e.target.value
-<<<<<<< HEAD
-=======
-    // console.log("currentTrackState", currentTrackState)
-    // console.log("currentTrackState", currentTrackState)
->>>>>>> fea1256fad0f2ecf6e128940c7132255b841d9ab
     this.setState({[`track${trackNum}`] : currentTrackState})
     // puts the dummy object back in place of the original state
     // this is repeated for all slider handlers
@@ -150,24 +145,6 @@ class App extends Component {
 
   handleFileInsertionToTrackPlayer = (e) => {
     //console.log(this.state.clicks, e.target.dataset.url)
-    this.setState({clicks: this.state.clicks+= 1})
-<<<<<<< HEAD
-    console.log(this.state.clicks);
-    console.log(this.state[`track${this.state.clicks}`]);
-
-    if(0 < this.state.clicks && this.state.clicks < 5){
-      let currentSample = {...this.state[`track${this.state.clicks}`]}
-      currentSample.url = e.target.dataset.url
-      currentSample.url_id = e.target.dataset.urlid
-      currentSample.name = e.target.dataset.name
-      currentSample.length = e.target.dataset.length
-      return this.setState({
-        [`track${this.state.clicks}`]: currentSample
-      })
-    } else {
-=======
-    //console.log(this.state.clicks);
-    //console.log(this.state[`track${this.state.clicks}`]);
     if(this.state.track1.active === false){
       let dummyTrack = {...this.state.track1}
       dummyTrack.active = true
@@ -212,7 +189,6 @@ class App extends Component {
     //   })
     // }
     else {
->>>>>>> css-and-clear
       return null
     }
   }
@@ -429,17 +405,6 @@ class App extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    //console.log("app ", this.state)
-=======
-    // console.log(this.state.songs, this.state.urls);
-    //console.log(this.state[`track${1}`].volumeLevel)
->>>>>>> fea1256fad0f2ecf6e128940c7132255b841d9ab
-    // ^ works
-    console.log(this.state)
-=======
->>>>>>> css-and-clear
     return (
       <div className="mainapp">
           <PlayerForm
@@ -453,14 +418,11 @@ class App extends Component {
             handlePitchSlide = {this.handlePitchSlide}
             handleInSlide = {this.handleInSlide}
             handleOutSlide = {this.handleOutSlide}
-<<<<<<< HEAD
             handleSaveSongs={this.handleSaveSongs}
             handleSongName={this.handleSongName}
             madFetches={this.madFetches}
-=======
             handleSongSave={this.handleSongSave}
             handleTrackClear = {this.handleTrackClear}
->>>>>>> css-and-clear
             />
           <FileLibrary
             urls={this.state.urls}
