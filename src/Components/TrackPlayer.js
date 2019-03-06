@@ -56,7 +56,11 @@ class TrackPlayer extends Component {
     // might be solved by state change?
     if (prevProps.track.url !== this.props.track.url){
       console.log('yes')
+      if (this.props.track.url === ""){
+        this.player.stop()
+      }
       this.player.load(this.props.track.url)
+      // i think this works? it might be wonky——had issue where empty track played
     }
     if (prevProps.track.trackIn !== this.props.track.trackIn){
       let inFloat = parseFloat(this.props.track.trackIn)
