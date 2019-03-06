@@ -81,7 +81,9 @@ div#iocontainer input::-webkit-slider-thumb{
   grid-template-areas: "playerform playerform filelibrary"
                        "playerform playerform filelibrary"
                        "savedsongs savedsongs filelibrary";
-  grid-gap: 30px;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  column-gap: 30px;
   height: 100%;
   width: 100%;
 }
@@ -91,14 +93,13 @@ div#iocontainer input::-webkit-slider-thumb{
   width: 100%;
   background-color: #f4f6f7;
   margin:20px;
-  height: 62vh;
 }
 
 .savedsongs{
   grid-area: savedsongs;
   background-color: #f4f6f7;
   margin:0px 0px 20px 20px;
-  height: 25vh;
+  height: 10vh;
   width: 100%;
   display: block;
   position: relative;
