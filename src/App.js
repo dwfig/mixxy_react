@@ -7,7 +7,7 @@ import FileLibrary from "./Containers/FileLibrary"
 const URLAPI = 'http://localhost:3000/api/v1/urls'
 const SONGAPI = 'http://localhost:3000/api/v1/songs'
 const TRACKAPI = 'http://localhost:3000/api/v1/tracks'
-// const SONGTRACKAPI = 'http://localhost:3000/api/v1/songtracks'
+const SONGTRACKAPI = 'http://localhost:3000/api/v1/songtracks'
 
 class App extends Component {
 
@@ -16,6 +16,7 @@ class App extends Component {
     this.state = {
       urls: [],
       songs: [],
+      tracks: [],
       clicks: 0,
       songName: "",
       track1 :{
@@ -77,6 +78,10 @@ class App extends Component {
     fetch(SONGAPI)
     .then(res => res.json())
     .then(songs => this.setState({songs: songs}))
+
+    fetch(TRACKAPI)
+    .then(res => res.json())
+    .then(tracks => this.setState({tracks: tracks}))
   }
 
   handleVolumeSlide = (trackNum, e) => {
@@ -143,12 +148,28 @@ class App extends Component {
     console.log(this.state.songName);
   }
 
+   postSong = () => {
+    return fetch(SONGAPI, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        name: this.state.songName
+      })
+    })
+    .then(res => res.json())
+    // .then(song => this.setState({songs: [...this.state.songs, song]}))
+  }
+
   postTrack1 = () => {
-    console.log(this.state.track1);
-    fetch(TRACKAPI, {
+    console.log('postTrack1', this.state.track1)
+    return fetch(TRACKAPI, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify({
           "name": this.state.track1.name,
@@ -161,14 +182,20 @@ class App extends Component {
           "pitch": this.state.track1.pitchShift
         })
       })
+    .then(res => res.json())
+    // .then(
+    //   track => this.setState({tracks: [...this.state.tracks, track]},
+    //   () => { console.log('after tracks setState: ', this.state.tracks) } )
+    // )
   }
 
   postTrack2 = () => {
-    console.log(this.state.track2);
-    fetch(TRACKAPI, {
+    console.log('postTrack2', this.state.track2);
+    return fetch(TRACKAPI, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify({
           "name": this.state.track2.name,
@@ -181,14 +208,17 @@ class App extends Component {
           "pitch": this.state.track2.pitchShift
         })
       })
+    .then(res => res.json())
+    // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack2', track) }))
   }
 
   postTrack3 = () => {
-    console.log(this.state.track3);
-    fetch(TRACKAPI, {
+    console.log('postTrack3', this.state.track3);
+    return fetch(TRACKAPI, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify({
           "name": this.state.track3.name,
@@ -201,14 +231,17 @@ class App extends Component {
           "pitch": this.state.track3.pitchShift
         })
       })
+    .then(res => res.json())
+    // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack3', track) }))
   }
 
   postTrack4 = () => {
-    console.log(this.state.track4);
-    fetch(TRACKAPI, {
+    console.log('postTrack4', this.state.track4);
+    return fetch(TRACKAPI, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify({
           "name": this.state.track4.name,
@@ -221,25 +254,103 @@ class App extends Component {
           "pitch": this.state.track4.pitchShift
         })
       })
+    .then(res => res.json())
+    // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack4', track) }))
   }
 
-  handleSaveSongs = () => {
-    // console.log('click save', this.state.song_name);
-    fetch(SONGAPI, {
+  postSongTrack1 = () => {
+    console.log('postSongTrack1', this.state.songs.length, this.state.tracks.length,  this.state.songs[this.state.songs.length - 1].id, this.state.tracks[this.state.tracks.length - 4].id);
+    fetch(SONGTRACKAPI, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Accept": "application/json"
       },
       body: JSON.stringify({
-        name: this.state.songName,
-
+        "song_id": this.state.songs[this.state.songs.length -1 ].id,
+        "track_id": this.state.tracks[this.state.tracks.length -4].id
       })
     })
-    .then(() => this.postTrack1())
-    .then(() => this.postTrack2())
-    .then(() => this.postTrack3())
-    .then(() => this.postTrack4())
+  }
 
+  postSongTrack2 = () => {
+    fetch(SONGTRACKAPI, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        "song_id": this.state.songs[this.state.songs.length -1 ].id,
+        "track_id": this.state.tracks[this.state.tracks.length -3].id
+      })
+    })
+  }
+
+  postSongTrack3 = () => {
+    fetch(SONGTRACKAPI, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        "song_id": this.state.songs[this.state.songs.length -1 ].id,
+        "track_id": this.state.tracks[this.state.tracks.length -2].id
+      })
+    })
+  }
+
+  postSongTrack4 = () => {
+    fetch(SONGTRACKAPI, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        "song_id": this.state.songs[this.state.songs.length -1 ].id,
+        "track_id": this.state.tracks[this.state.tracks.length -1].id
+      })
+    })
+  }
+
+  // handleSaveSongs = () => {
+  //   console.log('click save', this.state.song_name);
+  //   fetch(SONGAPI, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Accept": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       name: this.state.songName
+  //     })
+  //   })
+  //   .then(res => res.json())
+  //   .then(song => this.setState({songs: [...this.state.songs, song]}))
+  //   .then(console.log('song', this.state.songs))
+  //   .then(() => this.postTrack1())
+  //   .then(() => this.postTrack2())
+  //   .then(() => this.postTrack3())
+  //   .then(() => this.postTrack4())
+  //   .then(() => this.postSongTrack1())
+  // }
+
+  madFetches = () => {
+    Promise.all([this.postSong(), this.postTrack1(), this.postTrack2(), this.postTrack3(), this.postTrack4()])
+    .then( data => {
+      console.log('promises.all', data)
+      this.setState({
+        songs: [...this.state.songs, data[0]],
+        tracks: [...this.state.tracks, data[1], data[2], data[3], data[4]]
+      })
+      console.log(this.state);
+    } )
+    .then(() => this.postSongTrack1())
+    .then(() => this.postSongTrack2())
+    .then(() => this.postSongTrack3())
+    .then(() => this.postSongTrack4())
   }
 
   render() {
@@ -262,6 +373,7 @@ class App extends Component {
             handleOutSlide = {this.handleOutSlide}
             handleSaveSongs={this.handleSaveSongs}
             handleSongName={this.handleSongName}
+            madFetches={this.madFetches}
             />
           <FileLibrary
             urls={this.state.urls}
