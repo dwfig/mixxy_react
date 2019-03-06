@@ -82,6 +82,7 @@ class App extends Component {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.playRate = e.target.value
     this.setState({[`track${trackNum}`] : currentTrackState})
+    console.log("app ", this.state[`track${trackNum}`])
   }
 
   handlePitchSlide = (trackNum, e) => {
@@ -122,7 +123,7 @@ class App extends Component {
   }
 
   render() {
-    //console.log(this.state[`track${1}`].volumeLevel)
+    console.log("app ", this.state)
     // ^ works
     return (
       <div className="mainapp">

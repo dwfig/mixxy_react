@@ -13,7 +13,7 @@ class TrackPlayer extends Component {
 
     let clipUrl = "https://upload.wikimedia.org/wikipedia/commons/1/1c/Guitare_electrique_arpege.ogg"
     this.player = new Tone.Player(clipUrl)
-    let distortion = new Tone.Distortion(0.6)
+    //let distortion = new Tone.Distortion(0.6)
     this.trackVolume = new Tone.Volume(-60.0)
     //this.trackVolume.volume.value = this.props.volumeLevel
     //not convinced this line is right -- ERRORS HARD
@@ -27,7 +27,7 @@ class TrackPlayer extends Component {
     this.player.loopStart = 1;
     this.player.loopEnd=3;
     this.player.reverse=false;
-    this.player.chain(this.trackVolume, this.pitchShift, distortion, Tone.Master)
+    this.player.chain(this.trackVolume, this.pitchShift, Tone.Master)
 
   }
   // //THESE are about to be moved to App - they will look for the track that matches trackNum
@@ -106,7 +106,7 @@ class TrackPlayer extends Component {
   }
 
   render(){
-    //console.log("c ",this.props)
+    console.log("render ",this.props.track)
     //keep Tone events out of here--pass variables only
     //console.log("track ", this.props.trackNum, this.props.track)
     //console.log(this.props.handleVolumeSlide)
@@ -140,8 +140,8 @@ class TrackPlayer extends Component {
           <div className= "sliderlabel">Volume</div>
           <input
             type="range" className="slider" id="volume"
-            min="-60" max="20" defaultValue = "-60"
-            value={this.props.volumeLevel}
+            min="-60" max="20"
+            value={this.props.track.volumeLevel}
             onChange={(e) => this.props.handleVolumeSlide(this.props.trackNum,e)}
             />
         </div>
@@ -150,17 +150,17 @@ class TrackPlayer extends Component {
           <div className= "sliderlabel">In-Out</div>
           <input
             type="range" className="ioslider" id="in"
-            min="0" max="50" defaultValue="1" step="0.1"
+            min="0" max={this.props.track.length} defaultValue="0" step="0.1"
             value={this.props.trackIn}
             onChange={(e) => this.props.handleInSlide(this.props.trackNum,e)}
             />
           <input
             type="range" className="ioslider" id="out"
-            min="0" max="50" defaultValue="4" step="0.1"
+            min="0" max={this.props.track.length} defaultValue="4" step="0.1"
             value={this.props.trackOut}
             onChange={(e) => this.props.handleOutSlide(this.props.trackNum,e)}
             />
-          <div id="iolabel">0:00 - 0:00</div>
+          <div id="iolabel">{parseFloat(this.props.track.trackIn).toFixed(1).padStart(4,"0")} - {parseFloat(this.props.track.trackOut).toFixed(1).padStart(4,"0")}</div>
         </div>
         <button className="clearBtn">Clear</button>
       </ div>

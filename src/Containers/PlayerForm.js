@@ -11,6 +11,7 @@ class PlayerForm extends Component {
 
   //form will need NAME field and SUBMIT button
   render(){
+    console.log("player form ", this.state)
     return (
       <div className = "playerform">
         <TrackPlayer
