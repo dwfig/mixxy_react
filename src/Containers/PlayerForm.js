@@ -49,6 +49,7 @@ class PlayerForm extends Component {
           handleInSlide = {this.props.handleInSlide}
           handleOutSlide = {this.props.handleOutSlide}
           />
+        <button onClick={this.props.handleSongSave}>Save As a Song</button>
       </div>
     )
   }
