@@ -16,8 +16,9 @@ class PlayerForm extends Component {
     return (
       <div className = "playerform">
         <form>
-          Song Name:
-          <input type="text" name="songname" value={this.props.song_name} onChange={(e) => this.props.handleSongName(e)}/>
+          <div id= "playerformlabel">Song Name:</div>
+          <input id="playerformfield" type="text" name="songname" value={this.props.song_name} onChange={(e) => this.props.handleSongName(e)}/>
+          <button id="playerformbutton" onClick={this.props.madFetches}>Save As a Song</button>
         </form>
         <TrackPlayer
           track = {this.props.track1}
@@ -59,7 +60,6 @@ class PlayerForm extends Component {
           handleOutSlide = {this.props.handleOutSlide}
           handleTrackClear = {this.props.handleTrackClear}
           />
-        <button onClick={this.props.madFetches}>Save As a Song</button>
       </div>
     )
   }
