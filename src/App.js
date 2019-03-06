@@ -105,7 +105,6 @@ class App extends Component {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.playRate = e.target.value
     this.setState({[`track${trackNum}`] : currentTrackState})
-    console.log("app ", this.state[`track${trackNum}`])
   }
 
   handlePitchSlide = (trackNum, e) => {
@@ -126,9 +125,33 @@ class App extends Component {
     this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
+  // Right now : incrememts a variable "clicks" when user presses add file
+  // in FileLibrary——can't clear
+  // Goal: file insertion changes "active" status of the first inactive track
+  // clearing will make a track inactive
+  //
+
+  handleTrackClear = (e, trackNum) =>{
+    console.log(e, trackNum)
+    let resetTrack = {
+      active: false,
+      playRate: "10",
+      pitchShift: "0",
+      volumeLevel: "-60.0",
+      trackIn: "0",
+      trackOut: "0",
+      name: "",
+      url: "",
+      length: "0"
+    }
+    // console.log(resetTrack)
+    this.setState({[`track${trackNum}`] : resetTrack})
+  }
+
   handleFileInsertionToTrackPlayer = (e) => {
-    console.log(this.state.clicks, e.target.dataset.url)
+    //console.log(this.state.clicks, e.target.dataset.url)
     this.setState({clicks: this.state.clicks+= 1})
+<<<<<<< HEAD
     console.log(this.state.clicks);
     console.log(this.state[`track${this.state.clicks}`]);
 
@@ -142,6 +165,54 @@ class App extends Component {
         [`track${this.state.clicks}`]: currentSample
       })
     } else {
+=======
+    //console.log(this.state.clicks);
+    //console.log(this.state[`track${this.state.clicks}`]);
+    if(this.state.track1.active === false){
+      let dummyTrack = {...this.state.track1}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({track1 : dummyTrack})
+    }
+    if(this.state.track2.active === false){
+      let dummyTrack = {...this.state.track2}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({track2 : dummyTrack})
+    }
+    if(this.state.track3.active === false){
+      let dummyTrack = {...this.state.track3}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({track3 : dummyTrack})
+    }
+    if(this.state.track4.active === false){
+      let dummyTrack = {...this.state.track4}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({track4: dummyTrack})
+    }
+
+    // if(0 < this.state.clicks && this.state.clicks < 5){
+    //   let currentSample = {...this.state[`track${this.state.clicks}`]}
+    //   currentSample.active = true
+    //   currentSample.url = e.target.dataset.url
+    //   currentSample.name = e.target.dataset.name
+    //   currentSample.length = e.target.dataset.length
+    //   return this.setState({
+    //     [`track${this.state.clicks}`]: currentSample
+    //   })
+    // }
+    else {
+>>>>>>> css-and-clear
       return null
     }
   }
@@ -359,6 +430,7 @@ class App extends Component {
 
   render() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     //console.log("app ", this.state)
 =======
     // console.log(this.state.songs, this.state.urls);
@@ -366,6 +438,8 @@ class App extends Component {
 >>>>>>> fea1256fad0f2ecf6e128940c7132255b841d9ab
     // ^ works
     console.log(this.state)
+=======
+>>>>>>> css-and-clear
     return (
       <div className="mainapp">
           <PlayerForm
@@ -379,9 +453,14 @@ class App extends Component {
             handlePitchSlide = {this.handlePitchSlide}
             handleInSlide = {this.handleInSlide}
             handleOutSlide = {this.handleOutSlide}
+<<<<<<< HEAD
             handleSaveSongs={this.handleSaveSongs}
             handleSongName={this.handleSongName}
             madFetches={this.madFetches}
+=======
+            handleSongSave={this.handleSongSave}
+            handleTrackClear = {this.handleTrackClear}
+>>>>>>> css-and-clear
             />
           <FileLibrary
             urls={this.state.urls}

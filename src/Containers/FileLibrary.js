@@ -2,7 +2,10 @@ import React from 'react';
 import File from '../Components/File'
 
 const FileLibrary = props => {
+<<<<<<< HEAD
   //console.log(props.urls);
+=======
+>>>>>>> css-and-clear
   const generateFiles = () => {
     return props.urls.map(url => {
       return (
@@ -17,7 +20,6 @@ const FileLibrary = props => {
 
   return(
     <div className = "filelibrary">
-      filelibrary:
       {generateFiles()}
     </div>
   )

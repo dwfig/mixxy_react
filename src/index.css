@@ -81,7 +81,9 @@ div#iocontainer input::-webkit-slider-thumb{
   grid-template-areas: "playerform playerform filelibrary"
                        "playerform playerform filelibrary"
                        "savedsongs savedsongs filelibrary";
-  grid-gap: 30px;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  column-gap: 30px;
   height: 100%;
   width: 100%;
 }
@@ -91,17 +93,50 @@ div#iocontainer input::-webkit-slider-thumb{
   width: 100%;
   background-color: #f4f6f7;
   margin:20px;
-  height: 62vh;
 }
 
 .savedsongs{
   grid-area: savedsongs;
   background-color: #f4f6f7;
   margin:0px 0px 20px 20px;
-  height: 25vh;
+  height: 10vh;
   width: 100%;
   display: block;
   position: relative;
+  overflow: scroll;
+}
+
+.songeditbutton{
+  float:right;
+  margin-top: -20px;
+}
+
+.clearBtn{
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.0);
+  border-color: #00CC66;
+  border-style: solid;
+  border-width: 2px;
+  padding: 8px;
+  border-radius: 20px;
+  float:right;
+  color: #009E66;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.addfilebutton{
+  background-color: white;
+  border-color: #00CC66;
+  border-style: solid;
+  border-width: 2px;
+  padding: 8px;
+  border-radius: 20px;
+  float:right;
+  margin-top: -10px;
+  color: #009E66;
+  font-style: italic;
+  cursor: pointer;
 }
 
 .filelibrary{
@@ -121,6 +156,40 @@ div#iocontainer input::-webkit-slider-thumb{
   border-color: #00cc66;
   padding: 20px;
   margin: 20px;
+}
+
+.tracklabel{
+  font-size: 24px;
+  font-weight: bold;
+  font-style: italic;
+  color: #008556
+}
+
+.inactivetracklabel{
+  font-size: 24px;
+  font-weight: bold;
+  font-style: italic;
+  color: #FFFFFF
+}
+
+#inactive{
+  /* border-style: dashed; */
+  border-color: #74bf99;
+  background-color: #DDDDDD;
+  color: #FFFFFF
+}
+
+.inactiveClearBtn{
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.0);
+  border-color: #EEEEEE;
+  border-style: solid;
+  border-width: 2px;
+  padding: 8px;
+  border-radius: 20px;
+  float:right;
+  color: #EEEEEE;
+  font-style: italic;
 }
 
 .file{

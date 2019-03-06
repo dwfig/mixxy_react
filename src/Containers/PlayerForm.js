@@ -30,6 +30,7 @@ class PlayerForm extends Component {
           handlePitchSlide={this.props.handlePitchSlide}
           handleInSlide = {this.props.handleInSlide}
           handleOutSlide = {this.props.handleOutSlide}
+          handleTrackClear = {this.props.handleTrackClear}
           />
         <TrackPlayer
           track = {this.props.track2}
@@ -39,6 +40,7 @@ class PlayerForm extends Component {
           handlePitchSlide={this.props.handlePitchSlide}
           handleInSlide = {this.props.handleInSlide}
           handleOutSlide = {this.props.handleOutSlide}
+          handleTrackClear = {this.props.handleTrackClear}
           />
         <TrackPlayer
           track = {this.props.track3}
@@ -48,6 +50,7 @@ class PlayerForm extends Component {
           handlePitchSlide={this.props.handlePitchSlide}
           handleInSlide = {this.props.handleInSlide}
           handleOutSlide = {this.props.handleOutSlide}
+          handleTrackClear = {this.props.handleTrackClear}
           />
         <TrackPlayer
           track = {this.props.track4}
@@ -57,6 +60,7 @@ class PlayerForm extends Component {
           handlePitchSlide={this.props.handlePitchSlide}
           handleInSlide = {this.props.handleInSlide}
           handleOutSlide = {this.props.handleOutSlide}
+          handleTrackClear = {this.props.handleTrackClear}
           />
         <button onClick={this.props.madFetches}>Save As a Song</button>
       </div>

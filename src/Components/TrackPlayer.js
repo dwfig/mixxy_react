@@ -7,29 +7,30 @@ import Tone from 'tone';
 class TrackPlayer extends Component {
   constructor(props){
     super(props)
-    //I'm currently using a slider from 1 to 50 and dividing it by 10
-    // meaning users can pick speeds between 0.1 and 5.0
-    // one real easy way to implement reverse would be to make this value go negative I think
+    let clipUrl = ""
+    //TODO: change above to an empty string——it's fine in practice because it's
+    // always treated as having length 0 and therefore unlistenable
 
-    let clipUrl = "https://upload.wikimedia.org/wikipedia/commons/1/1c/Guitare_electrique_arpege.ogg"
     this.player = new Tone.Player(clipUrl)
-    //let distortion = new Tone.Distortion(0.6)
     this.trackVolume = new Tone.Volume(-60.0)
-    //this.trackVolume.volume.value = this.props.volumeLevel
-    //not convinced this line is right -- ERRORS HARD
     this.pitchShift = new Tone.PitchShift(0)
-    // these are defaults, we can put these in the constructor to start them here
-    // or in Event Handlers to let the user determine whatever details we want to give them
-    // they CAN NOT go in render, because they get re-rendered any time there's a change
-    // which means massive doubling, lagging, cutting out--it's bad
+    // These are defaults,they belong in constructor
+    // so the card object has an existing Tone object that event handlers change
+    //
+    // They CAN NOT go in render, because any change will re-render
+    // and add new Tone objects every time
+    // which means tons of matching tracks, lagging, cutting out--it's bad
     this.player.autostart = true;
     this.player.loop = true;
     this.player.loopStart = 1;
     this.player.loopEnd=3;
+    // these defaults do conflict with the state, but it's not really an issue
+    // because they're not usable like this
     this.player.reverse=false;
     this.player.chain(this.trackVolume, this.pitchShift, Tone.Master)
 
   }
+<<<<<<< HEAD
   // //THESE are about to be moved to App - they will look for the track that matches trackNum
   // // and change the state up there
   // // they can also be refactored into ONE function that receives trackNum and sliderType
@@ -47,6 +48,9 @@ class TrackPlayer extends Component {
   //   this.setState({pitchSlider : e.target.value})
   //   this.pitchShift.pitch = (this.state.pitchSlider);
   // }
+=======
+  // local event handlers removed
+>>>>>>> css-and-clear
 
   componentDidUpdate(prevProps){
     //console.log("componentDidUpdate",prevProps.track, this.props.track)
@@ -69,13 +73,19 @@ class TrackPlayer extends Component {
     //   console.log("success")
     // }
     // above commented out because I think it can all be handled within URLchange
+    // might be solved by state change?
     if (prevProps.track.url !== this.props.track.url){
       console.log('yes')
+      if (this.props.track.url === ""){
+        this.player.stop()
+      }
       this.player.load(this.props.track.url)
+      // i think this works? it might be wonky——had issue where empty track played
     }
     if (prevProps.track.trackIn !== this.props.track.trackIn){
       let inFloat = parseFloat(this.props.track.trackIn)
       this.player.loopStart = inFloat
+      this.player.restart()
     }
     if (prevProps.track.trackOut !== this.props.track.trackOut){
       let outFloat = parseFloat(this.props.track.trackOut)
@@ -85,12 +95,14 @@ class TrackPlayer extends Component {
       this.player.loopStart = this.props.track.trackOut
       this.player.loopEnd = this.props.track.trackIn
       this.player.reverse = true;
+      this.player.restart()
     }
     if (this.props.track.trackOut > this.props.track.trackIn){
       this.player.loopStart = this.props.track.trackIn
       this.player.loopEnd = this.props.track.trackOut
       this.player.reverse = false;
     }
+<<<<<<< HEAD
   }
 
   handleInSlide= (e) =>{
@@ -122,11 +134,23 @@ class TrackPlayer extends Component {
     //keep Tone events out of here--pass variables only
     //console.log("track ", this.props.trackNum, this.props.track)
     //console.log(this.props.handleVolumeSlide)
+=======
+  }
+
+  render(){
+    //console.log("render ",this.props.track)
+    //keep Tone events out of here!
+    // console.log("track ", this.props.trackNum, this.props.track)
+    // console.log(this.props.handleVolumeSlide)
+>>>>>>> css-and-clear
     // console.log(this.props.handleRateSlide)
-    //this.localVolumeSlide()
     return (
-      <div className = "trackplayer">
-        <div>{this.props.track.name}</div>
+      <div className = "trackplayer" id={this.props.track.active ? "active" : "inactive"}>
+        <div className = {this.props.track.active ? "tracklabel" : "inactivetracklabel"}>{this.props.track.active ? this.props.track.name : "empty track"}</div>
+        <button
+          onClick={(e) => this.props.handleTrackClear(e, this.props.trackNum)}
+          className={this.props.track.active ? "clearBtn" : "inactiveClearBtn"}
+          >Clear</button>
 
       <div className="slidecontainer">
           <div className= "sliderlabel">Play-Rate</div>
@@ -174,7 +198,6 @@ class TrackPlayer extends Component {
             />
           <div id="iolabel">{parseFloat(this.props.track.trackIn).toFixed(1).padStart(4,"0")} - {parseFloat(this.props.track.trackOut).toFixed(1).padStart(4,"0")}</div>
         </div>
-        <button className="clearBtn">Clear</button>
       </ div>
     )
   }

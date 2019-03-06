@@ -16,7 +16,6 @@ const SavedSongs = props => {
 
   return (
     <div className = "savedsongs">
-      Saved Songs
       {generateSongs()}
     </div>
   )
