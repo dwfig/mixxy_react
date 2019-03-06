@@ -149,6 +149,7 @@ class App extends Component {
       let dummyTrack = {...this.state.track1}
       dummyTrack.active = true
       dummyTrack.url = e.target.dataset.url
+      dummyTrack.url_id = e.target.dataset.urlid
       dummyTrack.name = e.target.dataset.name
       dummyTrack.length = e.target.dataset.length
       return this.setState({track1 : dummyTrack})
@@ -157,6 +158,7 @@ class App extends Component {
       let dummyTrack = {...this.state.track2}
       dummyTrack.active = true
       dummyTrack.url = e.target.dataset.url
+      dummyTrack.url_id = e.target.dataset.urlid
       dummyTrack.name = e.target.dataset.name
       dummyTrack.length = e.target.dataset.length
       return this.setState({track2 : dummyTrack})
@@ -165,6 +167,7 @@ class App extends Component {
       let dummyTrack = {...this.state.track3}
       dummyTrack.active = true
       dummyTrack.url = e.target.dataset.url
+      dummyTrack.url_id = e.target.dataset.urlid
       dummyTrack.name = e.target.dataset.name
       dummyTrack.length = e.target.dataset.length
       return this.setState({track3 : dummyTrack})
@@ -173,21 +176,11 @@ class App extends Component {
       let dummyTrack = {...this.state.track4}
       dummyTrack.active = true
       dummyTrack.url = e.target.dataset.url
+      dummyTrack.url_id = e.target.dataset.urlid
       dummyTrack.name = e.target.dataset.name
       dummyTrack.length = e.target.dataset.length
       return this.setState({track4: dummyTrack})
     }
-
-    // if(0 < this.state.clicks && this.state.clicks < 5){
-    //   let currentSample = {...this.state[`track${this.state.clicks}`]}
-    //   currentSample.active = true
-    //   currentSample.url = e.target.dataset.url
-    //   currentSample.name = e.target.dataset.name
-    //   currentSample.length = e.target.dataset.length
-    //   return this.setState({
-    //     [`track${this.state.clicks}`]: currentSample
-    //   })
-    // }
     else {
       return null
     }
@@ -199,7 +192,7 @@ class App extends Component {
     console.log(this.state.songName);
   }
 
-   postSong = () => {
+  postSong = () => {
     return fetch(SONGAPI, {
       method: "POST",
       headers: {
@@ -366,28 +359,6 @@ class App extends Component {
     })
   }
 
-  // handleSaveSongs = () => {
-  //   console.log('click save', this.state.song_name);
-  //   fetch(SONGAPI, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Accept": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       name: this.state.songName
-  //     })
-  //   })
-  //   .then(res => res.json())
-  //   .then(song => this.setState({songs: [...this.state.songs, song]}))
-  //   .then(console.log('song', this.state.songs))
-  //   .then(() => this.postTrack1())
-  //   .then(() => this.postTrack2())
-  //   .then(() => this.postTrack3())
-  //   .then(() => this.postTrack4())
-  //   .then(() => this.postSongTrack1())
-  // }
-
   madFetches = () => {
     Promise.all([this.postSong(), this.postTrack1(), this.postTrack2(), this.postTrack3(), this.postTrack4()])
     .then( data => {
@@ -421,7 +392,6 @@ class App extends Component {
             handleSaveSongs={this.handleSaveSongs}
             handleSongName={this.handleSongName}
             madFetches={this.madFetches}
-            handleSongSave={this.handleSongSave}
             handleTrackClear = {this.handleTrackClear}
             />
           <FileLibrary
