@@ -359,7 +359,8 @@ class App extends Component {
     })
   }
 
-  madFetches = () => {
+  madFetches = (e) => {
+    e.preventDefault()
     Promise.all([this.postSong(), this.postTrack1(), this.postTrack2(), this.postTrack3(), this.postTrack4()])
     .then( data => {
       console.log('promises.all', data)
