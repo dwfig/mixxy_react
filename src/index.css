@@ -74,6 +74,7 @@ div#iocontainer input::-webkit-slider-thumb{
 .sliderlabel{
   display: inline-block;
   width: 100px;
+  font-size: 1em;
 }
 
 .mainapp{
@@ -150,7 +151,7 @@ div#iocontainer input::-webkit-slider-thumb{
 }
 
 #playerformfield{
-  width: 400px;
+  width: 40%;
   margin-left: 20px;
   background-color: #fAfAfA;
   font-size: 18px;
@@ -161,7 +162,7 @@ div#iocontainer input::-webkit-slider-thumb{
 }
 
 #playerformbutton{
-  font-size: 16px;
+  font-size: 0.8em;
   background-color: white;
   border-color: #009E66;
   border-style: solid;
@@ -208,19 +209,19 @@ div#iocontainer input::-webkit-slider-thumb{
   border-width: 3px;
   border-radius: 8px;
   border-color: #00cc66;
-  padding: 20px;
-  margin: 20px;
+  padding: 0.7em;
+  margin: 0.7em;
 }
 
 .tracklabel{
-  font-size: 24px;
+  font-size: 1.4em;
   font-weight: bold;
   font-style: italic;
   color: #008556
 }
 
 .inactivetracklabel{
-  font-size: 24px;
+  font-size: 1.4em;
   font-weight: bold;
   font-style: italic;
   color: #FFFFFF
