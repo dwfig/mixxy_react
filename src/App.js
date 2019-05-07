@@ -143,6 +143,17 @@ class App extends Component {
     this.setState({[`track${trackNum}`] : resetTrack})
   }
 
+  //this method works
+  findFirstEmptyTrack = () =>{
+    for (let i=1 ; i <= 4 ; i++){
+      if(this.state[`track${i}`].active === false){
+        console.log(i)
+        return i
+      }
+    } console.log("all active")
+    return null
+  }
+
   handleFileInsertionToTrackPlayer = (e) => {
     //console.log(this.state.clicks, e.target.dataset.url)
     if(this.state.track1.active === false){
@@ -188,10 +199,13 @@ class App extends Component {
   }
 
   //these two methods, sending from file library and sending from song library
-  // should be refactored into one method probably
+  // should be refactored into one method probably?
+
+  // solve for now though: findFirstEmptyTrack should return a track num
 
   handleSendToPlayer = (e) => {
     // console.log(e)
+    // console.log(this.findFirstEmptyTrack())
     console.log(e[0])
     let newTrackOne = {...this.state.track1}
     // console.log(newTrackOne)
