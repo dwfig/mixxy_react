@@ -187,9 +187,32 @@ class App extends Component {
     }
   }
 
+  //these two methods, sending from file library and sending from song library
+  // should be refactored into one method probably
+
   handleSendToPlayer = (e) => {
-    console.log(e)
+    // console.log(e)
+    console.log(e[0])
+    let newTrackOne = {...this.state.track1}
+    // console.log(newTrackOne)
+    // active, length, name, pitchShift, playRate, trackIn
+    // trackOut, url, url_id, volumeLevel
+    newTrackOne.active = true;
+    newTrackOne.length = this.state.urls[e[0].url_id].length;
+    newTrackOne.name = e[0].name;
+    newTrackOne.pitchShift = e[0].pitch;
+    newTrackOne.playRate = e[0].tempo;
+    newTrackOne.trackIn = e[0].in;
+    newTrackOne.trackOut = e[0].out;
+    newTrackOne.url = this.state.urls[e[0].url_id].link
+    newTrackOne.url_id = e[0].url_id;
+    newTrackOne.volumeLevel = e[0].volume;
+    console.log(newTrackOne)
+    // console.log(e[1])
+    // console.log(e[2])
+    // console.log(e[3])
     console.log(this.state.track1)
+    // dummy tracks again!
   }
 
   handleSongName = (e) => {
@@ -216,7 +239,7 @@ class App extends Component {
   //these can probably also be refactored into one method
 
   postTrack1 = () => {
-    console.log('postTrack1', this.state.track1)
+    // console.log('postTrack1', this.state.track1)
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -242,7 +265,7 @@ class App extends Component {
   }
 
   postTrack2 = () => {
-    console.log('postTrack2', this.state.track2);
+    // console.log('postTrack2', this.state.track2);
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -265,7 +288,7 @@ class App extends Component {
   }
 
   postTrack3 = () => {
-    console.log('postTrack3', this.state.track3);
+    // console.log('postTrack3', this.state.track3);
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -288,7 +311,7 @@ class App extends Component {
   }
 
   postTrack4 = () => {
-    console.log('postTrack4', this.state.track4);
+    // console.log('postTrack4', this.state.track4);
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
