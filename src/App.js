@@ -155,47 +155,62 @@ class App extends Component {
   }
 
   handleFileInsertionToTrackPlayer = (e) => {
-    //console.log(this.state.clicks, e.target.dataset.url)
-    if(this.state.track1.active === false){
-      //can add a fn, placeDummyTrack that runs in all four cases
-      let dummyTrack = {...this.state.track1}
-      dummyTrack.active = true
-      dummyTrack.url = e.target.dataset.url
-      dummyTrack.url_id = e.target.dataset.urlid
-      dummyTrack.name = e.target.dataset.name
-      dummyTrack.length = e.target.dataset.length
-      return this.setState({track1 : dummyTrack})
-    }
-    if(this.state.track2.active === false){
-      let dummyTrack = {...this.state.track2}
-      dummyTrack.active = true
-      dummyTrack.url = e.target.dataset.url
-      dummyTrack.url_id = e.target.dataset.urlid
-      dummyTrack.name = e.target.dataset.name
-      dummyTrack.length = e.target.dataset.length
-      return this.setState({track2 : dummyTrack})
-    }
-    if(this.state.track3.active === false){
-      let dummyTrack = {...this.state.track3}
-      dummyTrack.active = true
-      dummyTrack.url = e.target.dataset.url
-      dummyTrack.url_id = e.target.dataset.urlid
-      dummyTrack.name = e.target.dataset.name
-      dummyTrack.length = e.target.dataset.length
-      return this.setState({track3 : dummyTrack})
-    }
-    if(this.state.track4.active === false){
-      let dummyTrack = {...this.state.track4}
-      dummyTrack.active = true
-      dummyTrack.url = e.target.dataset.url
-      dummyTrack.url_id = e.target.dataset.urlid
-      dummyTrack.name = e.target.dataset.name
-      dummyTrack.length = e.target.dataset.length
-      return this.setState({track4: dummyTrack})
-    }
-    else {
+    let empty = this.findFirstEmptyTrack()
+    if(!!empty===false){
+      console.log("no empty tracks")
       return null
+    } else {
+      let dummyTrack = {...this.state[`track${empty}`]}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.url_id = e.target.dataset.urlid
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({[`track${empty}`] : dummyTrack})
     }
+
+    //
+    // //console.log(this.state.clicks, e.target.dataset.url)
+    // if(this.state.track1.active === false){
+    //   //can add a fn, placeDummyTrack that runs in all four cases
+    //   let dummyTrack = {...this.state.track1}
+    //   dummyTrack.active = true
+    //   dummyTrack.url = e.target.dataset.url
+    //   dummyTrack.url_id = e.target.dataset.urlid
+    //   dummyTrack.name = e.target.dataset.name
+    //   dummyTrack.length = e.target.dataset.length
+    //   return this.setState({track1 : dummyTrack})
+    // }
+    // if(this.state.track2.active === false){
+    //   let dummyTrack = {...this.state.track2}
+    //   dummyTrack.active = true
+    //   dummyTrack.url = e.target.dataset.url
+    //   dummyTrack.url_id = e.target.dataset.urlid
+    //   dummyTrack.name = e.target.dataset.name
+    //   dummyTrack.length = e.target.dataset.length
+    //   return this.setState({track2 : dummyTrack})
+    // }
+    // if(this.state.track3.active === false){
+    //   let dummyTrack = {...this.state.track3}
+    //   dummyTrack.active = true
+    //   dummyTrack.url = e.target.dataset.url
+    //   dummyTrack.url_id = e.target.dataset.urlid
+    //   dummyTrack.name = e.target.dataset.name
+    //   dummyTrack.length = e.target.dataset.length
+    //   return this.setState({track3 : dummyTrack})
+    // }
+    // if(this.state.track4.active === false){
+    //   let dummyTrack = {...this.state.track4}
+    //   dummyTrack.active = true
+    //   dummyTrack.url = e.target.dataset.url
+    //   dummyTrack.url_id = e.target.dataset.urlid
+    //   dummyTrack.name = e.target.dataset.name
+    //   dummyTrack.length = e.target.dataset.length
+    //   return this.setState({track4: dummyTrack})
+    // }
+    // else {
+    //   return null
+    // }
   }
 
   //these two methods, sending from file library and sending from song library
@@ -205,7 +220,7 @@ class App extends Component {
 
   handleSendToPlayer = (e) => {
     // console.log(e)
-    // console.log(this.findFirstEmptyTrack())
+    console.log(!!this.findFirstEmptyTrack()===false)
     console.log(e[0])
     let newTrackOne = {...this.state.track1}
     // console.log(newTrackOne)
