@@ -12,8 +12,8 @@ import React from 'react';
           data-urlid = {props.url.id}
           data-name={props.url.name}
           data-length={props.url.length}
-          onClick={props.handleFileInsertionToTrackPlayer}
-          > Add Me
+          onClick={props.handleFileInsertionToTrackPlayer}>
+          Add Me
         </span>
       </div>
     )

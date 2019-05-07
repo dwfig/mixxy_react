@@ -190,6 +190,20 @@ div#iocontainer input::-webkit-slider-thumb{
   cursor: pointer;
 }
 
+.sendtoplayerbutton{
+  background-color: white;
+  border-color: #00CC66;
+  border-style: solid;
+  border-width: 2px;
+  padding: 8px;
+  border-radius: 20px;
+  float:right;
+  margin-top: -10px;
+  color: #009E66;
+  font-style: italic;
+  cursor: pointer;
+}
+
 .filelibrary{
   grid-area: filelibrary;
   background-color: #f4f6f7;

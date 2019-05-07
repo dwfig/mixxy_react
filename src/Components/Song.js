@@ -1,11 +1,16 @@
 import React from 'react';
 
 const Song = (props) => {
+  // console.log(props)
   return (
     <div className="song">
       {props.song.name}
+      <span
+        className="sendtoplayerbutton"
+        onClick={() => props.handleSendToPlayer(props.song.tracks)}>
+        Send to Player
+      </span>
 
-    
     </div>
   )
 }

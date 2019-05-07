@@ -146,6 +146,7 @@ class App extends Component {
   handleFileInsertionToTrackPlayer = (e) => {
     //console.log(this.state.clicks, e.target.dataset.url)
     if(this.state.track1.active === false){
+      //can add a fn, placeDummyTrack that runs in all four cases
       let dummyTrack = {...this.state.track1}
       dummyTrack.active = true
       dummyTrack.url = e.target.dataset.url
@@ -186,6 +187,11 @@ class App extends Component {
     }
   }
 
+  handleSendToPlayer = (e) => {
+    console.log(e)
+    console.log(this.state.track1)
+  }
+
   handleSongName = (e) => {
     console.log(e.target.value);
     this.setState({songName: e.target.value})
@@ -206,6 +212,8 @@ class App extends Component {
     .then(res => res.json())
     // .then(song => this.setState({songs: [...this.state.songs, song]}))
   }
+
+  //these can probably also be refactored into one method
 
   postTrack1 = () => {
     console.log('postTrack1', this.state.track1)
@@ -404,6 +412,7 @@ class App extends Component {
             tracks={this.state.tracks}
             songs={this.state.songs}
             songtracks={this.state.songtracks}
+            handleSendToPlayer={this.handleSendToPlayer}
           />
       </div>
     );

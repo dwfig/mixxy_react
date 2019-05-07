@@ -9,6 +9,7 @@ const SavedSongs = props => {
         < Song
           key={song.id}
           song={song}
+          handleSendToPlayer={props.handleSendToPlayer}
         />
       )
     })
