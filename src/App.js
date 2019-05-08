@@ -206,6 +206,9 @@ class App extends Component {
       // newTrack.length = this.state.urls[[`e${i-1}`].url_id].length;
       console.log(this.state.urls)
       console.log(i)
+      console.log(`e[${i-1}].url_id`,e[i-1].url_id)
+      console.log(this.state.urls.find((url)=>{return url.id===e[i-1].url_id}))
+      console.log(this.state.urls.find((url)=>{return url.id===e[i-1].url_id}).length)
       // newTrack.name = [`e${i-1}`].name;
       // newTrack.pitchShift = [`e${i-1}`].pitch;
       // newTrack.playRate = [`e${i-1}`].tempo;
