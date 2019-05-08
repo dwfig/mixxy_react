@@ -153,7 +153,7 @@ class App extends Component {
 
   clearAllTracks = (e) =>{
     for (let i = 1; i <= 4 ; i++){
-      handleTrackClear(e, i)
+      this.handleTrackClear(e, i)
     }
   }
 
