@@ -207,6 +207,7 @@ class App extends Component {
       newTrack.url_id = e[i-1].url_id;
       newTrack.volumeLevel = e[i-1].volume;
       // console.log(newTrack)
+      this.setState({[`track${i}`] : newTrack})
     }
   }
 
