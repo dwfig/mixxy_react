@@ -191,51 +191,23 @@ class App extends Component {
   // solve for now though: findFirstEmptyTrack should return a track num
 
   handleSendToPlayer = (e) => {
-    // console.log(e)
-    console.log(!!this.findFirstEmptyTrack()===false)
-    // console.log(e[0])
+    // console.log(!!this.findFirstEmptyTrack()===false)
     this.clearAllTracks()
-    // let newTrack1 = {...this.state.track1}
-    // is there a cute way to set
-    // this group of params equal
-    // to that group of params?
-    // mass variable assignment?
     for (let i=1 ; i<=4 ; i++){
       let newTrack = {...this.state[`track${i}`]}
-      // newTrack.active = true;
-      // newTrack.length = this.state.urls[[`e${i-1}`].url_id].length;
-      console.log(this.state.urls)
-      console.log(i)
-      console.log(`e[${i-1}].url_id`,e[i-1].url_id)
-      console.log(this.state.urls.find((url)=>{return url.id===e[i-1].url_id}))
-      console.log(this.state.urls.find((url)=>{return url.id===e[i-1].url_id}).length)
-      // newTrack.name = [`e${i-1}`].name;
-      // newTrack.pitchShift = [`e${i-1}`].pitch;
-      // newTrack.playRate = [`e${i-1}`].tempo;
-      // newTrack.trackIn = [`e${i-1}`].in;
-      // newTrack.trackOut = [`e${i-1}`].out;
-      // newTrack.url = this.state.urls[[`e${i-1}`].url_id].link
-      // newTrack.url_id = [`e${i-1}`].url_id;
-      // newTrack.volumeLevel = [`e${i-1}`].volume;
+      let foundUrl = this.state.urls.find((url) => {return url.id===e[i-1].url_id})
+      newTrack.active = true;
+      newTrack.length = foundUrl.length
+      newTrack.name = e[i-1].name;
+      newTrack.pitchShift = e[i-1].pitch;
+      newTrack.playRate = e[i-1].tempo;
+      newTrack.trackIn = e[i-1].in;
+      newTrack.trackOut = e[i-1].out;
+      newTrack.url = foundUrl.link
+      newTrack.url_id = e[i-1].url_id;
+      newTrack.volumeLevel = e[i-1].volume;
       // console.log(newTrack)
     }
-    // handle this iteratively pls
-    // newTrack.active = true;
-    // newTrack.length = this.state.urls[e[0].url_id].length;
-    // newTrack.name = e[0].name;
-    // newTrack.pitchShift = e[0].pitch;
-    // newTrack.playRate = e[0].tempo;
-    // newTrack.trackIn = e[0].in;
-    // newTrack.trackOut = e[0].out;
-    // newTrack.url = this.state.urls[e[0].url_id].link
-    // newTrack.url_id = e[0].url_id;
-    // newTrack.volumeLevel = e[0].volume;
-    // console.log(newTrack1)
-    // console.log(e[1])
-    // console.log(e[2])
-    // console.log(e[3])
-    // console.log(this.state.track1)
-    // dummy tracks again!
   }
 
   handleSongName = (e) => {
