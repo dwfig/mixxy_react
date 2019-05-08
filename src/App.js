@@ -96,6 +96,14 @@ class App extends Component {
     // TODO: refactor into ONE handler that takes a relevant argument??
   }
 
+  // handleAnySlide = (trackNum, e) => {
+  //   let currentTrackState = {...this.state[`track${trackNum}`]}
+                // we can give sliders a slidertype??
+                // or we can pass a param variable as an arg
+  //   currentTrackState.[slidertype] = e.target.value
+  //   this.setState({[`track${trackNum}`] : currentTrackState})
+  // }
+
   handleRateSlide = (trackNum, e) => {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.playRate = e.target.value
@@ -127,7 +135,7 @@ class App extends Component {
   //
 
   handleTrackClear = (e, trackNum) =>{
-    console.log(e, trackNum)
+    // console.log(e, trackNum)
     let resetTrack = {
       active: false,
       playRate: "10",
@@ -143,21 +151,28 @@ class App extends Component {
     this.setState({[`track${trackNum}`] : resetTrack})
   }
 
+  clearAllTracks = (e) =>{
+    for (let i = 1; i <= 4 ; i++){
+      handleTrackClear(e, i)
+    }
+  }
+
   //this method works
   findFirstEmptyTrack = () =>{
     for (let i=1 ; i <= 4 ; i++){
       if(this.state[`track${i}`].active === false){
-        console.log(i)
+        // console.log(i)
         return i
       }
-    } console.log("all active")
+    }
+    // console.log("all active")
     return null
   }
 
   handleFileInsertionToTrackPlayer = (e) => {
     let empty = this.findFirstEmptyTrack()
     if(!!empty===false){
-      console.log("no empty tracks")
+      // console.log("no empty tracks")
       return null
     } else {
       let dummyTrack = {...this.state[`track${empty}`]}
@@ -168,49 +183,6 @@ class App extends Component {
       dummyTrack.length = e.target.dataset.length
       return this.setState({[`track${empty}`] : dummyTrack})
     }
-
-    //
-    // //console.log(this.state.clicks, e.target.dataset.url)
-    // if(this.state.track1.active === false){
-    //   //can add a fn, placeDummyTrack that runs in all four cases
-    //   let dummyTrack = {...this.state.track1}
-    //   dummyTrack.active = true
-    //   dummyTrack.url = e.target.dataset.url
-    //   dummyTrack.url_id = e.target.dataset.urlid
-    //   dummyTrack.name = e.target.dataset.name
-    //   dummyTrack.length = e.target.dataset.length
-    //   return this.setState({track1 : dummyTrack})
-    // }
-    // if(this.state.track2.active === false){
-    //   let dummyTrack = {...this.state.track2}
-    //   dummyTrack.active = true
-    //   dummyTrack.url = e.target.dataset.url
-    //   dummyTrack.url_id = e.target.dataset.urlid
-    //   dummyTrack.name = e.target.dataset.name
-    //   dummyTrack.length = e.target.dataset.length
-    //   return this.setState({track2 : dummyTrack})
-    // }
-    // if(this.state.track3.active === false){
-    //   let dummyTrack = {...this.state.track3}
-    //   dummyTrack.active = true
-    //   dummyTrack.url = e.target.dataset.url
-    //   dummyTrack.url_id = e.target.dataset.urlid
-    //   dummyTrack.name = e.target.dataset.name
-    //   dummyTrack.length = e.target.dataset.length
-    //   return this.setState({track3 : dummyTrack})
-    // }
-    // if(this.state.track4.active === false){
-    //   let dummyTrack = {...this.state.track4}
-    //   dummyTrack.active = true
-    //   dummyTrack.url = e.target.dataset.url
-    //   dummyTrack.url_id = e.target.dataset.urlid
-    //   dummyTrack.name = e.target.dataset.name
-    //   dummyTrack.length = e.target.dataset.length
-    //   return this.setState({track4: dummyTrack})
-    // }
-    // else {
-    //   return null
-    // }
   }
 
   //these two methods, sending from file library and sending from song library
@@ -223,9 +195,10 @@ class App extends Component {
     console.log(!!this.findFirstEmptyTrack()===false)
     console.log(e[0])
     let newTrackOne = {...this.state.track1}
-    // console.log(newTrackOne)
-    // active, length, name, pitchShift, playRate, trackIn
-    // trackOut, url, url_id, volumeLevel
+    // is there a cute way to set
+    // this group of params equal
+    // to that group of params?
+    // mass variable assignment?
     newTrackOne.active = true;
     newTrackOne.length = this.state.urls[e[0].url_id].length;
     newTrackOne.name = e[0].name;
