@@ -194,22 +194,25 @@ class App extends Component {
     // console.log(e)
     console.log(!!this.findFirstEmptyTrack()===false)
     console.log(e[0])
-    let newTrackOne = {...this.state.track1}
+    this.clearAllTracks()
+    let newTrack1 = {...this.state.track1}
     // is there a cute way to set
     // this group of params equal
     // to that group of params?
     // mass variable assignment?
-    newTrackOne.active = true;
-    newTrackOne.length = this.state.urls[e[0].url_id].length;
-    newTrackOne.name = e[0].name;
-    newTrackOne.pitchShift = e[0].pitch;
-    newTrackOne.playRate = e[0].tempo;
-    newTrackOne.trackIn = e[0].in;
-    newTrackOne.trackOut = e[0].out;
-    newTrackOne.url = this.state.urls[e[0].url_id].link
-    newTrackOne.url_id = e[0].url_id;
-    newTrackOne.volumeLevel = e[0].volume;
-    console.log(newTrackOne)
+
+    // handle this iteratively pls
+    newTrack1.active = true;
+    newTrack1.length = this.state.urls[e[0].url_id].length;
+    newTrack1.name = e[0].name;
+    newTrack1.pitchShift = e[0].pitch;
+    newTrack1.playRate = e[0].tempo;
+    newTrack1.trackIn = e[0].in;
+    newTrack1.trackOut = e[0].out;
+    newTrack1.url = this.state.urls[e[0].url_id].link
+    newTrack1.url_id = e[0].url_id;
+    newTrack1.volumeLevel = e[0].volume;
+    console.log(newTrack1)
     // console.log(e[1])
     // console.log(e[2])
     // console.log(e[3])
