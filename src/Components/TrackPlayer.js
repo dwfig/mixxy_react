@@ -50,6 +50,7 @@ class TrackPlayer extends Component {
       let rateFloat = parseFloat(this.props.track.playRate/10)
       this.player.playbackRate = rateFloat
     }
+    // ERRORING
     if (prevProps.track.pitchShift !== this.props.track.pitchShift){
       //console.log("hit", prevProps.track.pitchShift, this.props.track.pitchShift)
       let pitchFloat = parseFloat(this.props.track.pitchShift)
