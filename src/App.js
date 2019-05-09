@@ -100,7 +100,7 @@ class App extends Component {
   //   let currentTrackState = {...this.state[`track${trackNum}`]}
                 // we can give sliders a slidertype??
                 // or we can pass a param variable as an arg
-  //   currentTrackState.[slidertype] = e.target.value
+  //   currentTrackState.[slidertype] = e.target. ...?
   //   this.setState({[`track${trackNum}`] : currentTrackState})
   // }
 
@@ -127,12 +127,6 @@ class App extends Component {
     currentTrackState.trackOut = e.target.value
     this.setState({[`track${trackNum}`] : currentTrackState})
   }
-
-  // Right now : incrememts a variable "clicks" when user presses add file
-  // in FileLibrary——can't clear
-  // Goal: file insertion changes "active" status of the first inactive track
-  // clearing will make a track inactive
-  //
 
   handleTrackClear = (e, trackNum) =>{
     // console.log(e, trackNum)
