@@ -204,6 +204,16 @@ div#iocontainer input::-webkit-slider-thumb{
   cursor: pointer;
 }
 
+.deletesongbutton{
+  float: right;
+  background-color: white;
+  padding: 8px;
+  border-radius: 20px;
+  float:right;
+  margin-top: -10px;
+  cursor: pointer;
+}
+
 .filelibrary{
   grid-area: filelibrary;
   background-color: #f4f6f7;

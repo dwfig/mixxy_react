@@ -10,7 +10,10 @@ const Song = (props) => {
         onClick={() => props.handleSendToPlayer(props.song.tracks)}>
         Send to Player
       </span>
-
+      <span
+        className="deletesongbutton">
+        ✖️
+      </span>
     </div>
   )
 }
