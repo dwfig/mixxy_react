@@ -10,6 +10,7 @@ const SavedSongs = props => {
           key={song.id}
           song={song}
           handleSendToPlayer={props.handleSendToPlayer}
+          handleDelete={props.handleDelete}
         />
       )
     })

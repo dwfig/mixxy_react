@@ -11,7 +11,8 @@ const Song = (props) => {
         Send to Player
       </span>
       <span
-        className="deletesongbutton">
+        className="deletesongbutton"
+        onClick={() => props.handleDelete(props.song)}>
         ✖️
       </span>
     </div>
@@ -20,9 +21,6 @@ const Song = (props) => {
 
 export default Song;
 
-// <div>
-//   {props.song.tracks[0].name}
-//   {props.song.tracks[1].name}
-//   {props.song.tracks[2].name}
-//   {props.song.tracks[3].name}
-// </div>
+// delete function might wait until the posts have been retooled
+// because otherwise it's going to need four deletes for songtracks and one for song
+// 

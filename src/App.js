@@ -183,7 +183,6 @@ class App extends Component {
   // should be refactored into one method probably?
 
   // solve for now though: findFirstEmptyTrack should return a track num
-
   handleSendToPlayer = (e) => {
     // console.log(!!this.findFirstEmptyTrack()===false)
     this.clearAllTracks()
@@ -203,6 +202,10 @@ class App extends Component {
       // console.log(newTrack)
       this.setState({[`track${i}`] : newTrack})
     }
+  }
+
+  handleDelete = (e) =>{
+    console.log("delete!", e)
   }
 
   handleSongName = (e) => {
@@ -426,6 +429,7 @@ class App extends Component {
             songs={this.state.songs}
             songtracks={this.state.songtracks}
             handleSendToPlayer={this.handleSendToPlayer}
+            handleDelete={this.handleDelete}
           />
       </div>
     );
