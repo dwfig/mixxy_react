@@ -35,7 +35,7 @@ div#iocontainer input{
   top: 15px;*/
   outline: none;
   height: 18px;
-  margin: 4px 0px 0px 0px;
+  margin: 1vh 0px 0px 0px;
   padding: 0px;
 
   -webkit-appearance: none;
@@ -62,7 +62,7 @@ div#iocontainer input::-webkit-slider-thumb{
 
 #iocontainer{
   position: relative;
-  height: 35px;
+  height: 3.2vh;
 /*  text-align: center;*/
 }
 
@@ -143,9 +143,9 @@ div#iocontainer input::-webkit-slider-thumb{
 }
 
 .inactiveClearBtn{
-  margin-top: -4vh;
-  margin-bottom: 0px;
-  font-size: 16px;
+  margin-top: -3.5vh;
+  margin-bottom: -2vh;
+  font-size: 80%;
   background-color: rgba(0, 0, 0, 0.0);
   border-color: #EEEEEE;
   border-style: solid;
@@ -248,22 +248,24 @@ div#iocontainer input::-webkit-slider-thumb{
   border-width: 3px;
   border-radius: 8px;
   border-color: #00cc66;
-  padding: 0.7em;
-  margin: 0.7em;
+  padding: 1vh 1vw 1vh 1vw;
+  margin: 1vh 1vw 1vh 1vw;
 }
 
 .tracklabel{
   font-size: 1.4em;
   font-weight: bold;
   font-style: italic;
-  color: #008556
+  color: #008556;
+  margin-top: -1vh;
 }
 
 .inactivetracklabel{
   font-size: 1.4em;
   font-weight: bold;
   font-style: italic;
-  color: #FFFFFF
+  color: #FFFFFF;
+  margin-top: -1vh;
 }
 
 #inactive{
