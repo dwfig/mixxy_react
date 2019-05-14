@@ -108,6 +108,7 @@ div#iocontainer input::-webkit-slider-thumb{
   margin: 6vh 2vw 2vh 2vw;
   border-radius: 6px;
   padding-top: 2vh;
+  overflow: scroll;
 }
 
 .savedsongs{
@@ -129,15 +130,17 @@ div#iocontainer input::-webkit-slider-thumb{
 }
 
 .clearBtn{
-  font-size: 16px;
+  margin-top: -3.5vh;
+  margin-bottom: -2vh;
+  font-size: 80%;
   background-color: rgba(0, 0, 0, 0.0);
-  border-color: #00CC66;
+  border-color: #c10055;
   border-style: solid;
   border-width: 2px;
-  padding: 8px;
+  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
   border-radius: 20px;
   float:right;
-  color: #009E66;
+  color: #c10055;
   font-style: italic;
   cursor: pointer;
 }
@@ -248,8 +251,9 @@ div#iocontainer input::-webkit-slider-thumb{
   border-width: 3px;
   border-radius: 8px;
   border-color: #00cc66;
-  padding: 1vh 1vw 1vh 1vw;
+  padding: 1.5vh 1vw 1vh 1vw;
   margin: 1vh 1vw 1vh 1vw;
+  height: 18%
 }
 
 .tracklabel{
