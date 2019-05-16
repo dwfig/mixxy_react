@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import TrackPlayer from "../Components/TrackPlayer"
 
 class PlayerForm extends Component {
-  //starting with class because it needs to be a form that submits
   // might be refactored into functional component
   constructor(props){
     super(props)
     this.state = {}
   }
 
-  //form will need NAME field and SUBMIT button
   render(){
     console.log("player form ", this.state)
-    // console.log(this.props);
     return (
       <div className = "playerform">
         <form>
