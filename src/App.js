@@ -4,10 +4,10 @@ import PlayerForm from './Containers/PlayerForm'
 import SavedSongs from "./Containers/SavedSongs"
 import FileLibrary from "./Containers/FileLibrary"
 
-const URLAPI = 'http://localhost:3000/api/v1/urls'
-const SONGAPI = 'http://localhost:3000/api/v1/songs'
-const TRACKAPI = 'http://localhost:3000/api/v1/tracks'
-const SONGTRACKAPI = 'http://localhost:3000/api/v1/songtracks'
+const URLAPI = 'https://mixlr.herokuapp.com/api/v1/urls'
+const SONGAPI = 'https://mixlr.herokuapp.com/api/v1/songs'
+const TRACKAPI = 'https://mixlr.herokuapp.com/api/v1/tracks'
+const SONGTRACKAPI = 'https://mixlr.herokuapp.com/api/v1/songtracks'
 
 class App extends Component {
 
