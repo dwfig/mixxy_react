@@ -1,20 +1,26 @@
 import React from 'react';
 
 const Song = (props) => {
+  // console.log(props)
   return (
     <div className="song">
       {props.song.name}
-
-    
+      <span
+        className="sendtoplayerbutton"
+        onClick={() => props.handleSendToPlayer(props.song.tracks)}>
+        Send to Player
+      </span>
+      <span
+        className="deletesongbutton"
+        onClick={() => props.handleDelete(props.song)}>
+        ✖️
+      </span>
     </div>
   )
 }
 
 export default Song;
 
-// <div>
-//   {props.song.tracks[0].name}
-//   {props.song.tracks[1].name}
-//   {props.song.tracks[2].name}
-//   {props.song.tracks[3].name}
-// </div>
+// delete function might wait until the posts have been retooled
+// because otherwise it's going to need four deletes for songtracks and one for song
+// 

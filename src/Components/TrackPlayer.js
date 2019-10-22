@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 //import React, { Fragment } from 'react';
 import Tone from 'tone';
 
+
 //this should be refactored to a functional component probably
 // (I think it can probably still be)
 class TrackPlayer extends Component {
   constructor(props){
     super(props)
     let clipUrl = ""
-    //TODO: change above to an empty string——it's fine in practice because it's
-    // always treated as having length 0 and therefore unlistenable
 
     this.player = new Tone.Player(clipUrl)
     this.trackVolume = new Tone.Volume(-60.0)
@@ -20,6 +19,9 @@ class TrackPlayer extends Component {
     // They CAN NOT go in render, because any change will re-render
     // and add new Tone objects every time
     // which means tons of matching tracks, lagging, cutting out--it's bad
+    //
+    // However this is causing some sort of buffer issue I don't understand yet
+    //
     this.player.autostart = true;
     this.player.loop = true;
     this.player.loopStart = 1;
@@ -50,6 +52,7 @@ class TrackPlayer extends Component {
       let rateFloat = parseFloat(this.props.track.playRate/10)
       this.player.playbackRate = rateFloat
     }
+    // ERRORING
     if (prevProps.track.pitchShift !== this.props.track.pitchShift){
       //console.log("hit", prevProps.track.pitchShift, this.props.track.pitchShift)
       let pitchFloat = parseFloat(this.props.track.pitchShift)

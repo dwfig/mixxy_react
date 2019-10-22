@@ -96,6 +96,14 @@ class App extends Component {
     // TODO: refactor into ONE handler that takes a relevant argument??
   }
 
+  // handleAnySlide = (trackNum, e) => {
+  //   let currentTrackState = {...this.state[`track${trackNum}`]}
+                // we can give sliders a slidertype??
+                // or we can pass a param variable as an arg
+  //   currentTrackState.[slidertype] = e.target. ...?
+  //   this.setState({[`track${trackNum}`] : currentTrackState})
+  // }
+
   handleRateSlide = (trackNum, e) => {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.playRate = e.target.value
@@ -120,14 +128,8 @@ class App extends Component {
     this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
-  // Right now : incrememts a variable "clicks" when user presses add file
-  // in FileLibrary——can't clear
-  // Goal: file insertion changes "active" status of the first inactive track
-  // clearing will make a track inactive
-  //
-
   handleTrackClear = (e, trackNum) =>{
-    console.log(e, trackNum)
+    // console.log(e, trackNum)
     let resetTrack = {
       active: false,
       playRate: "10",
@@ -143,47 +145,67 @@ class App extends Component {
     this.setState({[`track${trackNum}`] : resetTrack})
   }
 
+  clearAllTracks = (e) =>{
+    for (let i = 1; i <= 4 ; i++){
+      this.handleTrackClear(e, i)
+    }
+  }
+
+  //this method works
+  findFirstEmptyTrack = () =>{
+    for (let i=1 ; i <= 4 ; i++){
+      if(this.state[`track${i}`].active === false){
+        // console.log(i)
+        return i
+      }
+    }
+    // console.log("all active")
+    return null
+  }
+
   handleFileInsertionToTrackPlayer = (e) => {
-    //console.log(this.state.clicks, e.target.dataset.url)
-    if(this.state.track1.active === false){
-      let dummyTrack = {...this.state.track1}
-      dummyTrack.active = true
-      dummyTrack.url = e.target.dataset.url
-      dummyTrack.url_id = e.target.dataset.urlid
-      dummyTrack.name = e.target.dataset.name
-      dummyTrack.length = e.target.dataset.length
-      return this.setState({track1 : dummyTrack})
-    }
-    if(this.state.track2.active === false){
-      let dummyTrack = {...this.state.track2}
-      dummyTrack.active = true
-      dummyTrack.url = e.target.dataset.url
-      dummyTrack.url_id = e.target.dataset.urlid
-      dummyTrack.name = e.target.dataset.name
-      dummyTrack.length = e.target.dataset.length
-      return this.setState({track2 : dummyTrack})
-    }
-    if(this.state.track3.active === false){
-      let dummyTrack = {...this.state.track3}
-      dummyTrack.active = true
-      dummyTrack.url = e.target.dataset.url
-      dummyTrack.url_id = e.target.dataset.urlid
-      dummyTrack.name = e.target.dataset.name
-      dummyTrack.length = e.target.dataset.length
-      return this.setState({track3 : dummyTrack})
-    }
-    if(this.state.track4.active === false){
-      let dummyTrack = {...this.state.track4}
-      dummyTrack.active = true
-      dummyTrack.url = e.target.dataset.url
-      dummyTrack.url_id = e.target.dataset.urlid
-      dummyTrack.name = e.target.dataset.name
-      dummyTrack.length = e.target.dataset.length
-      return this.setState({track4: dummyTrack})
-    }
-    else {
+    let empty = this.findFirstEmptyTrack()
+    if(!!empty===false){
+      // console.log("no empty tracks")
       return null
+    } else {
+      let dummyTrack = {...this.state[`track${empty}`]}
+      dummyTrack.active = true
+      dummyTrack.url = e.target.dataset.url
+      dummyTrack.url_id = e.target.dataset.urlid
+      dummyTrack.name = e.target.dataset.name
+      dummyTrack.length = e.target.dataset.length
+      return this.setState({[`track${empty}`] : dummyTrack})
     }
+  }
+
+  //these two methods, sending from file library and sending from song library
+  // should be refactored into one method probably?
+
+  // solve for now though: findFirstEmptyTrack should return a track num
+  handleSendToPlayer = (e) => {
+    // console.log(!!this.findFirstEmptyTrack()===false)
+    this.clearAllTracks()
+    for (let i=1 ; i<=4 ; i++){
+      let newTrack = {...this.state[`track${i}`]}
+      let foundUrl = this.state.urls.find((url) => {return url.id===e[i-1].url_id})
+      newTrack.active = true;
+      newTrack.length = foundUrl.length
+      newTrack.name = e[i-1].name;
+      newTrack.pitchShift = e[i-1].pitch;
+      newTrack.playRate = e[i-1].tempo;
+      newTrack.trackIn = e[i-1].in;
+      newTrack.trackOut = e[i-1].out;
+      newTrack.url = foundUrl.link
+      newTrack.url_id = e[i-1].url_id;
+      newTrack.volumeLevel = e[i-1].volume;
+      // console.log(newTrack)
+      this.setState({[`track${i}`] : newTrack})
+    }
+  }
+
+  handleDelete = (e) =>{
+    console.log("delete!", e)
   }
 
   handleSongName = (e) => {
@@ -207,8 +229,10 @@ class App extends Component {
     // .then(song => this.setState({songs: [...this.state.songs, song]}))
   }
 
+  //these can probably also be refactored into one method
+
   postTrack1 = () => {
-    console.log('postTrack1', this.state.track1)
+    // console.log('postTrack1', this.state.track1)
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -234,7 +258,7 @@ class App extends Component {
   }
 
   postTrack2 = () => {
-    console.log('postTrack2', this.state.track2);
+    // console.log('postTrack2', this.state.track2);
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -257,7 +281,7 @@ class App extends Component {
   }
 
   postTrack3 = () => {
-    console.log('postTrack3', this.state.track3);
+    // console.log('postTrack3', this.state.track3);
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -280,7 +304,7 @@ class App extends Component {
   }
 
   postTrack4 = () => {
-    console.log('postTrack4', this.state.track4);
+    // console.log('postTrack4', this.state.track4);
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -404,6 +428,8 @@ class App extends Component {
             tracks={this.state.tracks}
             songs={this.state.songs}
             songtracks={this.state.songtracks}
+            handleSendToPlayer={this.handleSendToPlayer}
+            handleDelete={this.handleDelete}
           />
       </div>
     );
