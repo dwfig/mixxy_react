@@ -38,3 +38,9 @@ Then you can start running the program with `npm start`.
 ## NPM Packages
 * Tone.js
 * React-Dom.js
+
+## Select Samples to Remix
+![Mixlr](https://raw.githubusercontent.com/dwfig/mixxy-react/master/public/mixlr-unselected.png)
+
+## Remix Selected Samples and Save to Library
+![Mixlr Remix](https://raw.githubusercontent.com/dwfig/mixxy-react/master/public/mixlr-unselected.png)
