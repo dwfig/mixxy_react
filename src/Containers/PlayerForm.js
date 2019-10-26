@@ -9,7 +9,7 @@ class PlayerForm extends Component {
   }
 
   render(){
-    console.log("player form ", this.state)
+    // console.log("player form ", this.state)
     return (
       <div className = "playerform">
         <form>

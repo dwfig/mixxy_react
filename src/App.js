@@ -206,50 +206,28 @@ class App extends Component {
 
   deleteSong = (song) => {
     console.log(song)
-  }
-
-  deleteTrack = (trackArray) => {
-    console.log(trackArray)
-    trackArray.forEach(function(track){
-      // console.log(TRACKAPI + `/${track.id}`)
-      fetch(TRACKAPI + `/${track.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-      })
-      .then(res => res.json())
-      .then(deleted => console.log('deleted track', deleted))
+    fetch(SONGAPI + `/${song.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
     })
+    .then(res => res.json())
+    .then(deleted => console.log('deleted song trying to dependent destroy', deleted))
   }
 
-  deleteSongtrack = (songtrackArray) => {
-    // console.log(songtrackArray[0].id)
-    songtrackArray.forEach(function(songtrack){
-      // console.log(SONGTRACKAPI + `/${songtrack.id}`)
-      fetch(SONGTRACKAPI + `/${songtrack.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-      })
-      .then(res => res.json())
-      .then(deleted => console.log('deleted songtrack', deleted))
+  handleDelete = (e) => {
+    // console.log("deleting!", e)
+    //I added a dependent destroy on the backend so deleting a song deleted the associated songtracks and tracks when you delete a song so only one fetch needs to be made and removes the need for a Promise.all fn
+    this.deleteSong(e)
+    // now we need to remove it from the DOM
+    // console.log('song state', this.state.songs);
+    let newSongArray = this.state.songs.filter(song => song.id !== e.id)
+    // console.log('updated', newSongArray);
+    this.setState({
+      songs: newSongArray
     })
-  }
-
-  handleDelete = (e) =>{
-    console.log("deleting!")
-    // this.deleteSong(e)
-    this.deleteSongtrack(e.songtracks)
-    this.deleteTrack(e.tracks)
-    //send a delete fetch to the API for the songtracks associated
-    //send a delete fetch to the API for the tracks associated
-    //send a delete fetch to the API for the song
-
-
   }
 
   handleSongName = (e) => {
@@ -445,6 +423,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('song state', this.state.songs);
     return (
       <div className="mainapp">
           <div className="header">mixlr~~~</div>
