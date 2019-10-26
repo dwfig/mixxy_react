@@ -121,14 +121,14 @@ class App extends Component {
     this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
-  // TODO: refactor into ONE handler that takes a relevant argument??
-  // handleAnySlide = (trackNum, e) => {
-  //   let currentTrackState = {...this.state[`track${trackNum}`]}
-                // we can give sliders a slidertype??
-                // or we can pass a param variable as an arg
-  //   currentTrackState.[slidertype] = e.target. ...?
-  //   this.setState({[`track${trackNum}`] : currentTrackState})
-  // }
+// TODO: refactor into ONE handler that takes a relevant argument??
+// handleAnySlide = (trackNum, e) => {
+//   let currentTrackState = {...this.state[`track${trackNum}`]}
+              // we can give sliders a slidertype??
+              // or we can pass a param variable as an arg
+//   currentTrackState.[slidertype] = e.target. ...?
+//   this.setState({[`track${trackNum}`] : currentTrackState})
+// }
 
   // accepts a trackNum and resets the individual track to the original values
   // and removes it from local state
@@ -169,9 +169,10 @@ class App extends Component {
   }
 
   // runs findFirstEmptyTrack, return value is a slot #
-  // then creates track object and sets it in state in the given slot # 
+  // then creates track object and sets it in state in the given slot #
   handleFileInsertionToTrackPlayer = (e) => {
     let empty = this.findFirstEmptyTrack()
+
     if(!!empty===false){
       return null
     } else {
@@ -185,13 +186,12 @@ class App extends Component {
     }
   }
 
-  //these two methods, sending from file library and sending from song library
-  // should be refactored into one method probably?
+// these two methods, sending from file library and sending from song library
+// should be refactored into one method probably?
 
-  // solve for now though: findFirstEmptyTrack should return a track num
   handleSendToPlayer = (e) => {
-    // console.log(!!this.findFirstEmptyTrack()===false)
     this.clearAllTracks()
+
     for (let i=1 ; i<=4 ; i++){
       let newTrack = {...this.state[`track${i}`]}
       let foundUrl = this.state.urls.find((url) => {return url.id===e[i-1].url_id})
@@ -205,13 +205,13 @@ class App extends Component {
       newTrack.url = foundUrl.link
       newTrack.url_id = e[i-1].url_id;
       newTrack.volumeLevel = e[i-1].volume;
-      // console.log(newTrack)
+
       this.setState({[`track${i}`] : newTrack})
     }
   }
 
+  // sends a delete request to the API for a song
   deleteSong = (song) => {
-    console.log(song)
     fetch(SONGAPI + `/${song.id}`, {
       method: "DELETE",
       headers: {
@@ -219,18 +219,18 @@ class App extends Component {
         "Accept": "application/json"
       },
     })
-    .then(res => res.json())
-    .then(deleted => console.log('deleted song trying to dependent destroy', deleted))
+    // .then(res => res.json())
+    // .then(deleted => console.log('deleted song trying to dependent destroy', deleted))
   }
 
+  // added a dependent destroy on the backend so deleting a song
+  // also deleted the associated songtracks and tracks
+  // only one fetch needs to be made and removes the need for a Promise.all
+  // also handles removing song from library on the DOM
   handleDelete = (e) => {
-    // console.log("deleting!", e)
-    //I added a dependent destroy on the backend so deleting a song deleted the associated songtracks and tracks when you delete a song so only one fetch needs to be made and removes the need for a Promise.all fn
     this.deleteSong(e)
-    // now we need to remove it from the DOM
-    // console.log('song state', this.state.songs);
+
     let newSongArray = this.state.songs.filter(song => song.id !== e.id)
-    // console.log('updated', newSongArray);
     this.setState({
       songs: newSongArray
     })
@@ -257,7 +257,7 @@ class App extends Component {
     // .then(song => this.setState({songs: [...this.state.songs, song]}))
   }
 
-  //these can probably also be refactored into one method
+//these can probably also be refactored into one method
 
   postTrack1 = () => {
     // console.log('postTrack1', this.state.track1)
@@ -411,6 +411,10 @@ class App extends Component {
     })
   }
 
+  // this method sends all 9 of the requisite post requests to the database
+  // to create a new song, and the assoc songtracks and tracks
+  // song and tracks are posted FIRST and state is reset to include the new objs
+  // then post the songtracks to the API
   madFetches = (e) => {
     e.preventDefault()
     Promise.all([this.postSong(), this.postTrack1(), this.postTrack2(), this.postTrack3(), this.postTrack4()])
@@ -429,7 +433,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('song state', this.state.songs);
     return (
       <div className="mainapp">
           <div className="header">mixlr~~~</div>
