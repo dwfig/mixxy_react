@@ -70,6 +70,8 @@ class App extends Component {
     }
   }
 
+  // lifecycle method to fetch all of the database info
+  // and save it to state locally in the frontend
   componentDidMount() {
     fetch(URLAPI)
     .then(res => res.json())
@@ -84,25 +86,16 @@ class App extends Component {
     .then(tracks => this.setState({tracks: tracks}))
   }
 
+  // accesses tracks based on the trackNum prop passed down to each player
+  // creates a dummy object currentTrackState and replaces volumeLevel
+  // with the value of the slider
+  // puts the dummy object back in place of the original state
+  // this is repeated for all slider handlers
   handleVolumeSlide = (trackNum, e) => {
-    // accesses tracks based on the trackNum prop passed down to each player
     let currentTrackState = {...this.state[`track${trackNum}`]}
-    // creates a dummy object currentTrackState and replaces volumeLevel
-    // with the value of the slider
     currentTrackState.volumeLevel = e.target.value
     this.setState({[`track${trackNum}`] : currentTrackState})
-    // puts the dummy object back in place of the original state
-    // this is repeated for all slider handlers
-    // TODO: refactor into ONE handler that takes a relevant argument??
   }
-
-  // handleAnySlide = (trackNum, e) => {
-  //   let currentTrackState = {...this.state[`track${trackNum}`]}
-                // we can give sliders a slidertype??
-                // or we can pass a param variable as an arg
-  //   currentTrackState.[slidertype] = e.target. ...?
-  //   this.setState({[`track${trackNum}`] : currentTrackState})
-  // }
 
   handleRateSlide = (trackNum, e) => {
     let currentTrackState = {...this.state[`track${trackNum}`]}
@@ -128,8 +121,19 @@ class App extends Component {
     this.setState({[`track${trackNum}`] : currentTrackState})
   }
 
+  // TODO: refactor into ONE handler that takes a relevant argument??
+  // handleAnySlide = (trackNum, e) => {
+  //   let currentTrackState = {...this.state[`track${trackNum}`]}
+                // we can give sliders a slidertype??
+                // or we can pass a param variable as an arg
+  //   currentTrackState.[slidertype] = e.target. ...?
+  //   this.setState({[`track${trackNum}`] : currentTrackState})
+  // }
+
+  // accepts a trackNum and resets the individual track to the original values
+  // and removes it from local state
+  // triggering a rerender of the individual track
   handleTrackClear = (e, trackNum) =>{
-    // console.log(e, trackNum)
     let resetTrack = {
       active: false,
       playRate: "10",
@@ -141,25 +145,26 @@ class App extends Component {
       url: "",
       length: "0"
     }
-    // console.log(resetTrack)
     this.setState({[`track${trackNum}`] : resetTrack})
   }
 
+  // runs the above handleTrackClear 4x for the number of available tracks
   clearAllTracks = (e) =>{
     for (let i = 1; i <= 4 ; i++){
       this.handleTrackClear(e, i)
     }
   }
 
-  //this method works
+  // when a user deletes a track from the trackplayer, we assume they would
+  // potentially like to replace that specific track with another
+  // this finds the first empty slot in the player and returns it
+  // so the return value can be used below in handleSendToPlayer
   findFirstEmptyTrack = () =>{
     for (let i=1 ; i <= 4 ; i++){
       if(this.state[`track${i}`].active === false){
-        // console.log(i)
         return i
       }
     }
-    // console.log("all active")
     return null
   }
 
