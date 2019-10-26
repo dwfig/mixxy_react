@@ -4,10 +4,10 @@ import PlayerForm from './Containers/PlayerForm'
 import SavedSongs from "./Containers/SavedSongs"
 import FileLibrary from "./Containers/FileLibrary"
 
-const URLAPI = 'https://mixlr.herokuapp.com/api/v1/urls'
-const SONGAPI = 'https://mixlr.herokuapp.com/api/v1/songs'
-const TRACKAPI = 'https://mixlr.herokuapp.com/api/v1/tracks'
-const SONGTRACKAPI = 'https://mixlr.herokuapp.com/api/v1/songtracks'
+const URLAPI = 'http://localhost:3000/api/v1/urls'
+const SONGAPI = 'http://localhost:3000/api/v1/songs'
+const TRACKAPI = 'http://localhost:3000/api/v1/tracks'
+const SONGTRACKAPI = 'http://localhost:3000/api/v1/songtracks'
 
 class App extends Component {
 
@@ -204,8 +204,52 @@ class App extends Component {
     }
   }
 
+  deleteSong = (song) => {
+    console.log(song)
+  }
+
+  deleteTrack = (trackArray) => {
+    console.log(trackArray)
+    trackArray.forEach(function(track){
+      // console.log(TRACKAPI + `/${track.id}`)
+      fetch(TRACKAPI + `/${track.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+      })
+      .then(res => res.json())
+      .then(deleted => console.log('deleted track', deleted))
+    })
+  }
+
+  deleteSongtrack = (songtrackArray) => {
+    // console.log(songtrackArray[0].id)
+    songtrackArray.forEach(function(songtrack){
+      // console.log(SONGTRACKAPI + `/${songtrack.id}`)
+      fetch(SONGTRACKAPI + `/${songtrack.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+      })
+      .then(res => res.json())
+      .then(deleted => console.log('deleted songtrack', deleted))
+    })
+  }
+
   handleDelete = (e) =>{
-    console.log("delete!", e)
+    console.log("deleting!")
+    // this.deleteSong(e)
+    this.deleteSongtrack(e.songtracks)
+    this.deleteTrack(e.tracks)
+    //send a delete fetch to the API for the songtracks associated
+    //send a delete fetch to the API for the tracks associated
+    //send a delete fetch to the API for the song
+
+
   }
 
   handleSongName = (e) => {
@@ -387,12 +431,12 @@ class App extends Component {
     e.preventDefault()
     Promise.all([this.postSong(), this.postTrack1(), this.postTrack2(), this.postTrack3(), this.postTrack4()])
     .then( data => {
-      console.log('promises.all', data)
+      // console.log('promises.all', data)
       this.setState({
         songs: [...this.state.songs, data[0]],
         tracks: [...this.state.tracks, data[1], data[2], data[3], data[4]]
       })
-      console.log(this.state);
+      // console.log(this.state);
     } )
     .then(() => this.postSongTrack1())
     .then(() => this.postSongTrack2())
