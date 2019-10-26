@@ -86,7 +86,7 @@ class App extends Component {
     .then(tracks => this.setState({tracks: tracks}))
   }
 
-  // accesses tracks based on the trackNum prop passed down to each player
+  // accesses track based on the trackNum prop passed down to each player
   // creates a dummy object currentTrackState and replaces volumeLevel
   // with the value of the slider
   // puts the dummy object back in place of the original state
@@ -168,10 +168,11 @@ class App extends Component {
     return null
   }
 
+  // runs findFirstEmptyTrack, return value is a slot #
+  // then creates track object and sets it in state in the given slot # 
   handleFileInsertionToTrackPlayer = (e) => {
     let empty = this.findFirstEmptyTrack()
     if(!!empty===false){
-      // console.log("no empty tracks")
       return null
     } else {
       let dummyTrack = {...this.state[`track${empty}`]}
