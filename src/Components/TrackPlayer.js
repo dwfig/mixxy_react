@@ -64,7 +64,7 @@ class TrackPlayer extends Component {
     // above commented out because I think it can all be handled within URLchange
     // might be solved by state change?
     if (prevProps.track.url !== this.props.track.url){
-      console.log('yes')
+      // console.log('yes')
       if (this.props.track.url === ""){
         this.player.stop()
       }
