@@ -1,66 +1,58 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TrackPlayer from "../Components/TrackPlayer"
 
-class PlayerForm extends Component {
-  // might be refactored into functional component
-  constructor(props){
-    super(props)
-    this.state = {}
-  }
+const PlayerForm = props => {
 
-  render(){
-    // console.log("player form ", this.state)
-    return (
-      <div className = "playerform">
-        <form>
-          <div id= "playerformlabel">Song Name:</div>
-          <input id="playerformfield" type="text" name="songname" value={this.props.song_name} onChange={(e) => this.props.handleSongName(e)}/>
-          <button id="playerformbutton" onClick={this.props.madFetches}>Save Song</button>
-          <button id="playerclearbutton" onClick={this.props.handleFormClear}>Clear</button>
-        </form>
-        <TrackPlayer
-          track = {this.props.track1}
-          trackNum = {1}
-          handleVolumeSlide={this.props.handleVolumeSlide}
-          handleRateSlide={this.props.handleRateSlide}
-          handlePitchSlide={this.props.handlePitchSlide}
-          handleInSlide = {this.props.handleInSlide}
-          handleOutSlide = {this.props.handleOutSlide}
-          handleTrackClear = {this.props.handleTrackClear}
-          />
-        <TrackPlayer
-          track = {this.props.track2}
-          trackNum = {2}
-          handleVolumeSlide={this.props.handleVolumeSlide}
-          handleRateSlide={this.props.handleRateSlide}
-          handlePitchSlide={this.props.handlePitchSlide}
-          handleInSlide = {this.props.handleInSlide}
-          handleOutSlide = {this.props.handleOutSlide}
-          handleTrackClear = {this.props.handleTrackClear}
-          />
-        <TrackPlayer
-          track = {this.props.track3}
-          trackNum = {3}
-          handleVolumeSlide={this.props.handleVolumeSlide}
-          handleRateSlide={this.props.handleRateSlide}
-          handlePitchSlide={this.props.handlePitchSlide}
-          handleInSlide = {this.props.handleInSlide}
-          handleOutSlide = {this.props.handleOutSlide}
-          handleTrackClear = {this.props.handleTrackClear}
-          />
-        <TrackPlayer
-          track = {this.props.track4}
-          trackNum = {4}
-          handleVolumeSlide={this.props.handleVolumeSlide}
-          handleRateSlide={this.props.handleRateSlide}
-          handlePitchSlide={this.props.handlePitchSlide}
-          handleInSlide = {this.props.handleInSlide}
-          handleOutSlide = {this.props.handleOutSlide}
-          handleTrackClear = {this.props.handleTrackClear}
-          />
-      </div>
-    )
-  }
+  return (
+    <div className = "playerform">
+      <form>
+        <div id= "playerformlabel">Song Name:</div>
+        <input id="playerformfield" type="text" name="songname" value={props.song_name} onChange={(e) => props.handleSongName(e)}/>
+        <button id="playerformbutton" onClick={props.madFetches}>Save Song</button>
+        <button id="playerclearbutton" onClick={props.handleFormClear}>Clear All</button>
+      </form>
+      <TrackPlayer
+        track = {props.track1}
+        trackNum = {1}
+        handleVolumeSlide={props.handleVolumeSlide}
+        handleRateSlide={props.handleRateSlide}
+        handlePitchSlide={props.handlePitchSlide}
+        handleInSlide = {props.handleInSlide}
+        handleOutSlide = {props.handleOutSlide}
+        handleTrackClear = {props.handleTrackClear}
+        />
+      <TrackPlayer
+        track = {props.track2}
+        trackNum = {2}
+        handleVolumeSlide={props.handleVolumeSlide}
+        handleRateSlide={props.handleRateSlide}
+        handlePitchSlide={props.handlePitchSlide}
+        handleInSlide = {props.handleInSlide}
+        handleOutSlide = {props.handleOutSlide}
+        handleTrackClear = {props.handleTrackClear}
+        />
+      <TrackPlayer
+        track = {props.track3}
+        trackNum = {3}
+        handleVolumeSlide={props.handleVolumeSlide}
+        handleRateSlide={props.handleRateSlide}
+        handlePitchSlide={props.handlePitchSlide}
+        handleInSlide = {props.handleInSlide}
+        handleOutSlide = {props.handleOutSlide}
+        handleTrackClear = {props.handleTrackClear}
+        />
+      <TrackPlayer
+        track = {props.track4}
+        trackNum = {4}
+        handleVolumeSlide={props.handleVolumeSlide}
+        handleRateSlide={props.handleRateSlide}
+        handlePitchSlide={props.handlePitchSlide}
+        handleInSlide = {props.handleInSlide}
+        handleOutSlide = {props.handleOutSlide}
+        handleTrackClear = {props.handleTrackClear}
+        />
+    </div>
+  )
 }
 
 export default PlayerForm

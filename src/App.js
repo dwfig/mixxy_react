@@ -143,7 +143,7 @@ class App extends Component {
   // accepts a trackNum and resets the individual track to the original values
   // and removes it from local state
   // triggering a rerender of the individual track
-  handleTrackClear = (trackNum) =>{
+  handleTrackClear = (trackNum, e) =>{
     let resetTrack = {
       active: false,
       playRate: "10",
@@ -156,7 +156,7 @@ class App extends Component {
       length: "0"
     }
     this.setState({
-      [`track${trackNum}`] : resetTrack
+      [`track${trackNum}`]: resetTrack
     })
   }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import File from '../Components/File'
 
 const FileLibrary = props => {
+  
   const generateFiles = () => {
     return props.urls.map(url => {
       return (
@@ -11,8 +12,8 @@ const FileLibrary = props => {
           handleFileInsertionToTrackPlayer={props.handleFileInsertionToTrackPlayer}
         />
       )
-    })//end of map
-  }//end of generateFiles fn
+    })
+  }
 
   return(
     <div className = "filelibrary">

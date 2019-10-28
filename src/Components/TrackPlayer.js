@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-//import React, { Fragment } from 'react';
 import Tone from 'tone';
-
 
 //this should be refactored to a functional component probably
 // (I think it can probably still be)
@@ -108,10 +106,9 @@ class TrackPlayer extends Component {
       <div className = "trackplayer" id={this.props.track.active ? "active" : "inactive"}>
         <div className = {this.props.track.active ? "tracklabel" : "inactivetracklabel"}>{this.props.track.active ? this.props.track.name : "empty track"}</div>
         <button
-          onClick={(e) => this.props.handleTrackClear(e, this.props.trackNum)}
+          onClick={(e) => this.props.handleTrackClear(this.props.trackNum, e)}
           className={this.props.track.active ? "clearBtn" : "inactiveClearBtn"}
-          >Clear
-        </button>
+          >Clear</button>
 
       <div className="slidecontainer">
         <div className= "sliderlabel">Play-Rate</div>
