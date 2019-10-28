@@ -94,31 +94,41 @@ class App extends Component {
   handleVolumeSlide = (trackNum, e) => {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.volumeLevel = e.target.value
-    this.setState({[`track${trackNum}`] : currentTrackState})
+    this.setState({
+      [`track${trackNum}`]: currentTrackState
+    })
   }
 
   handleRateSlide = (trackNum, e) => {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.playRate = e.target.value
-    this.setState({[`track${trackNum}`] : currentTrackState})
+    this.setState({
+      [`track${trackNum}`]: currentTrackState
+    })
   }
 
   handlePitchSlide = (trackNum, e) => {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.pitchShift = e.target.value
-    this.setState({[`track${trackNum}`] : currentTrackState})
+    this.setState({
+      [`track${trackNum}`]: currentTrackState
+    })
   }
 
   handleInSlide = (trackNum, e) => {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.trackIn = e.target.value
-    this.setState({[`track${trackNum}`] : currentTrackState})
+    this.setState({
+      [`track${trackNum}`]: currentTrackState
+    })
   }
 
   handleOutSlide = (trackNum, e) => {
     let currentTrackState = {...this.state[`track${trackNum}`]}
     currentTrackState.trackOut = e.target.value
-    this.setState({[`track${trackNum}`] : currentTrackState})
+    this.setState({
+      [`track${trackNum}`]: currentTrackState
+    })
   }
 
 // TODO: refactor into ONE handler that takes a relevant argument??
@@ -145,7 +155,9 @@ class App extends Component {
       url: "",
       length: "0"
     }
-    this.setState({[`track${trackNum}`] : resetTrack})
+    this.setState({
+      [`track${trackNum}`] : resetTrack
+    })
   }
 
   // runs the above handleTrackClear 4x for the number of available tracks
@@ -155,6 +167,8 @@ class App extends Component {
     }
   }
 
+  // when a user wants to clear the entire player form
+  // it calls the clearAllTracks fn and resets the state of the song name to nothing
   clearPlayerForm = (e) => {
     e.preventDefault()
     this.clearAllTracks()
@@ -190,7 +204,9 @@ class App extends Component {
       dummyTrack.url_id = e.target.dataset.urlid
       dummyTrack.name = e.target.dataset.name
       dummyTrack.length = e.target.dataset.length
-      return this.setState({[`track${empty}`] : dummyTrack})
+      return this.setState({
+        [`track${empty}`] : dummyTrack
+      })
     }
   }
 
@@ -253,9 +269,9 @@ class App extends Component {
     this.setState({songName: e.target.value})
   }
 
-  // sends a post request to the API with the
+  // sends a post request to the API with the song name
+  // songs have many tracks through songtracks
   postSong = () => {
-    console.log('posting a song');
     return fetch(SONGAPI, {
       method: "POST",
       headers: {
@@ -266,14 +282,14 @@ class App extends Component {
         name: this.state.songName
       })
     })
-    .then(res => res.json())
+    // .then(res => res.json())
     // .then(song => this.setState({songs: [...this.state.songs, song]}))
   }
 
 //these can probably also be refactored into one method
 
+  // this and all of the other track posting fns send the relevant data about every individual track within the larger player form to the API
   postTrack1 = () => {
-    console.log('postTrack1', this.state.track1)
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -291,7 +307,7 @@ class App extends Component {
           "pitch": this.state.track1.pitchShift
         })
       })
-    .then(res => res.json())
+    // .then(res => res.json())
     // .then(
     //   track => this.setState({tracks: [...this.state.tracks, track]},
     //   () => { console.log('after tracks setState: ', this.state.tracks) } )
@@ -317,7 +333,7 @@ class App extends Component {
           "pitch": this.state.track2.pitchShift
         })
       })
-    .then(res => res.json())
+    // .then(res => res.json())
     // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack2', track) }))
   }
 
@@ -340,7 +356,7 @@ class App extends Component {
           "pitch": this.state.track3.pitchShift
         })
       })
-    .then(res => res.json())
+    // .then(res => res.json())
     // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack3', track) }))
   }
 
@@ -363,10 +379,11 @@ class App extends Component {
           "pitch": this.state.track4.pitchShift
         })
       })
-    .then(res => res.json())
+    // .then(res => res.json())
     // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack4', track) }))
   }
 
+  // this and all of the songtrack posting fns send the relevant data connecting a song and a track together in the API
   postSongTrack1 = () => {
     console.log('postSongTrack1', this.state.songs.length, this.state.tracks.length,  this.state.songs[this.state.songs.length - 1].id, this.state.tracks[this.state.tracks.length - 4].id);
     fetch(SONGTRACKAPI, {
@@ -432,12 +449,10 @@ class App extends Component {
     e.preventDefault()
     Promise.all([this.postSong(), this.postTrack1(), this.postTrack2(), this.postTrack3(), this.postTrack4()])
     .then( data => {
-      // console.log('promises.all', data)
       this.setState({
         songs: [...this.state.songs, data[0]],
         tracks: [...this.state.tracks, data[1], data[2], data[3], data[4]]
       })
-      // console.log(this.state);
     } )
     .then(() => this.postSongTrack1())
     .then(() => this.postSongTrack2())
