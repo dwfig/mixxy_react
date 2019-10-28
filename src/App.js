@@ -284,9 +284,6 @@ class App extends Component {
       })
     })
     .then(res => res.json())
-    // .then(song => this.setState({songs: [...this.state.songs, song]},
-    // () => { console.log('song', song) } )
-    // )
   }
 
 //these can probably also be refactored into one method
@@ -312,10 +309,6 @@ class App extends Component {
         })
       })
     .then(res => res.json())
-    // .then(
-    //   track => this.setState({tracks: [...this.state.tracks, track]},
-    //   () => { console.log('postTrack1', track) } )
-    // )
   }
 
   postTrack2 = () => {
@@ -338,7 +331,6 @@ class App extends Component {
         })
       })
     .then(res => res.json())
-    // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack2', track) }))
   }
 
   postTrack3 = () => {
@@ -361,7 +353,6 @@ class App extends Component {
         })
       })
     .then(res => res.json())
-    // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack3', track) }))
   }
 
   postTrack4 = () => {
@@ -384,7 +375,6 @@ class App extends Component {
         })
       })
     .then(res => res.json())
-    // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack4', track) }))
   }
 
   // this and all of the songtrack posting fns send the relevant data connecting a song and a track together in the API
