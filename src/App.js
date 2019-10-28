@@ -189,6 +189,9 @@ class App extends Component {
 // these two methods, sending from file library and sending from song library
 // should be refactored into one method probably?
 
+  // first clear all of the current tracks
+  // then run a loop so that for every track associated with a song, they set
+  // the state with the associated data for the track, which triggers a rerender
   handleSendToPlayer = (e) => {
     this.clearAllTracks()
 
@@ -219,8 +222,6 @@ class App extends Component {
         "Accept": "application/json"
       },
     })
-    // .then(res => res.json())
-    // .then(deleted => console.log('deleted song trying to dependent destroy', deleted))
   }
 
   // added a dependent destroy on the backend so deleting a song
