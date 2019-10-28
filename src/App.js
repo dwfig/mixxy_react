@@ -272,6 +272,7 @@ class App extends Component {
   // sends a post request to the API with the song name
   // songs have many tracks through songtracks
   postSong = () => {
+    console.log('sending song');
     return fetch(SONGAPI, {
       method: "POST",
       headers: {
@@ -282,14 +283,17 @@ class App extends Component {
         name: this.state.songName
       })
     })
-    // .then(res => res.json())
-    // .then(song => this.setState({songs: [...this.state.songs, song]}))
+    .then(res => res.json())
+    // .then(song => this.setState({songs: [...this.state.songs, song]},
+    // () => { console.log('song', song) } )
+    // )
   }
 
 //these can probably also be refactored into one method
 
   // this and all of the other track posting fns send the relevant data about every individual track within the larger player form to the API
   postTrack1 = () => {
+    console.log('sending track1 fetch');
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -307,15 +311,15 @@ class App extends Component {
           "pitch": this.state.track1.pitchShift
         })
       })
-    // .then(res => res.json())
+    .then(res => res.json())
     // .then(
     //   track => this.setState({tracks: [...this.state.tracks, track]},
-    //   () => { console.log('after tracks setState: ', this.state.tracks) } )
+    //   () => { console.log('postTrack1', track) } )
     // )
   }
 
   postTrack2 = () => {
-    console.log('postTrack2', this.state.track2);
+    console.log('sending track2 fetch');
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -333,12 +337,12 @@ class App extends Component {
           "pitch": this.state.track2.pitchShift
         })
       })
-    // .then(res => res.json())
+    .then(res => res.json())
     // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack2', track) }))
   }
 
   postTrack3 = () => {
-    console.log('postTrack3', this.state.track3);
+    console.log('sending track3 fetch');
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -356,12 +360,12 @@ class App extends Component {
           "pitch": this.state.track3.pitchShift
         })
       })
-    // .then(res => res.json())
+    .then(res => res.json())
     // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack3', track) }))
   }
 
   postTrack4 = () => {
-    console.log('postTrack4', this.state.track4);
+    console.log('sending track4 fetch');
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -379,7 +383,7 @@ class App extends Component {
           "pitch": this.state.track4.pitchShift
         })
       })
-    // .then(res => res.json())
+    .then(res => res.json())
     // .then(track => this.setState({tracks: [...this.state.tracks, track]}, () => { console.log('postTrack4', track) }))
   }
 
@@ -447,17 +451,20 @@ class App extends Component {
   // then post the songtracks to the API
   madFetches = (e) => {
     e.preventDefault()
+    console.log('sending the song and tracks');
     Promise.all([this.postSong(), this.postTrack1(), this.postTrack2(), this.postTrack3(), this.postTrack4()])
-    .then( data => {
+    .then(data => {
+      console.log(data);
       this.setState({
         songs: [...this.state.songs, data[0]],
         tracks: [...this.state.tracks, data[1], data[2], data[3], data[4]]
       })
-    } )
+    })
     .then(() => this.postSongTrack1())
     .then(() => this.postSongTrack2())
     .then(() => this.postSongTrack3())
     .then(() => this.postSongTrack4())
+    console.log('all of the fetches should be done');
   }
 
   render() {
