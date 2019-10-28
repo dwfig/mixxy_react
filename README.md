@@ -1,4 +1,3 @@
-![icon](https://raw.githubusercontent.com/dwfig/mixxy_react/master/public/favicon.ico)
 # MIXLR
 
 Developed by [Gabbie Piraino](https://github.com/pirainogi) and [Daniel Fries](https://github.com/dwfig)
@@ -19,12 +18,12 @@ Mixlr allows users to remix up to four audio samples to dynamically create and s
 
 ## Built With
 
-* Ruby on Rails
 * React.js
 * Tone.js
 * Javascript
-* HTML5 and CSS3 (semi-responsive)
+* Ruby on Rails
 * PostgreSQL Database
+* HTML5 and CSS3 (semi-responsive web app)
 
 ### Please find the Ruby on Rails backend repo at [Mixxy-Rails](https://github.com/pirainogi/mixxy_rails).
 
@@ -42,8 +41,8 @@ Then you can start running the program with `npm start`.
 * Tone.js
 * React-Dom.js
 
-## Select Samples to Remix
+## Select Samples to Remix, Review Saved Songs, Save Songs from Player Form
 ![Mixlr](https://raw.githubusercontent.com/dwfig/mixxy_react/master/public/mixlr-unselected.png)
 
-## Remix Selected Samples and Save to Library
+## Remix Selected Samples
 ![Mixlr Remix](https://raw.githubusercontent.com/dwfig/mixxy_react/master/public/mixlr-selected.png)
