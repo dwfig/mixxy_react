@@ -1,3 +1,4 @@
+![icon](https://raw.githubusercontent.com/dwfig/mixxy_react/master/public/favicon.ico)
 # MIXLR
 
 Developed by [Gabbie Piraino](https://github.com/pirainogi) and [Daniel Fries](https://github.com/dwfig)
@@ -8,11 +9,13 @@ Mixlr allows users to remix up to four audio samples to dynamically create and s
 
 # Features
 
-* Users can select up to four musical samples to remix
-* Users can adjust playrate, pitch, volume, and the point in which a sample starts and stops (in/out)
-* Users can remove samples from the track player and reselect samples from the available samples
-* Users can name and save a remix to the library
-* Users can delete a saved song from the library
+* Users can select up to four musical samples from the Library to remix and send them to a Track Player slot in the Player Form
+* Users can adjust playrate, pitch, volume, and the point in which a single  sample starts and stops (in/out) in the Track Player
+* Users can remove individual samples from the Track Player and reselect samples from the Library (replaced in the first empty slot)
+* Users can clear the entire Player Form
+* Users can name and save a remix to the Saved Songs
+* Users can send a saved remix back to the Player Form
+* Users can delete a saved song from the Saved Songs
 
 ## Built With
 
