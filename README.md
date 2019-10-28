@@ -6,6 +6,8 @@ Mixlr allows users to remix up to four audio samples to dynamically create and s
 
 ### Mixlr has been deployed on Heroku and Netlify. You can see the demo version of this application at [https://mixlr.netlify.com/](https://mixlr.netlify.com/). The backend can be accessed on [Heroku](https://mixlr.herokuapp.com), though please be aware that you need to navigate to a specific route in order to review the JSON data ([example available here](https://mixlr.herokuapp.com/api/v1/songs)).
 
+### Please find the Ruby on Rails backend repo at [Mixxy-Rails](https://github.com/pirainogi/mixxy_rails).
+
 # Features
 
 * Users can select up to four musical samples from the Library to remix and send them to a Track Player slot in the Player Form
@@ -24,8 +26,6 @@ Mixlr allows users to remix up to four audio samples to dynamically create and s
 * Ruby on Rails
 * PostgreSQL Database
 * HTML5 and CSS3 (semi-responsive web app)
-
-### Please find the Ruby on Rails backend repo at [Mixxy-Rails](https://github.com/pirainogi/mixxy_rails).
 
 ## Prerequisites
 
