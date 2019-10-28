@@ -133,7 +133,7 @@ class App extends Component {
   // accepts a trackNum and resets the individual track to the original values
   // and removes it from local state
   // triggering a rerender of the individual track
-  handleTrackClear = (e, trackNum) =>{
+  handleTrackClear = (trackNum) =>{
     let resetTrack = {
       active: false,
       playRate: "10",
@@ -149,10 +149,18 @@ class App extends Component {
   }
 
   // runs the above handleTrackClear 4x for the number of available tracks
-  clearAllTracks = (e) =>{
+  clearAllTracks = () =>{
     for (let i = 1; i <= 4 ; i++){
-      this.handleTrackClear(e, i)
+      this.handleTrackClear(i)
     }
+  }
+
+  clearPlayerForm = (e) => {
+    e.preventDefault()
+    this.clearAllTracks()
+    this.setState({
+      songName: ""
+    })
   }
 
   // when a user deletes a track from the trackplayer, we assume they would
@@ -456,6 +464,7 @@ class App extends Component {
             handleSongName={this.handleSongName}
             madFetches={this.madFetches}
             handleTrackClear = {this.handleTrackClear}
+            handleFormClear= {this.clearPlayerForm}
             />
           <FileLibrary
             urls={this.state.urls}
