@@ -7,7 +7,7 @@ const Song = (props) => {
       {props.song.name}
       <span
         className="sendtoplayerbutton"
-        onClick={() => props.handleSendToPlayer(props.song.tracks)}>
+        onClick={() => props.handleSendToPlayer(props.song.tracks, props.song.name)}>
         Send to Player
       </span>
       <span

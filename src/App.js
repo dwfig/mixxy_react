@@ -192,24 +192,27 @@ class App extends Component {
   // first clear all of the current tracks
   // then run a loop so that for every track associated with a song, they set
   // the state with the associated data for the track, which triggers a rerender
-  handleSendToPlayer = (e) => {
+  handleSendToPlayer = (trackArray, songName) => {
     this.clearAllTracks()
+    let trackTotal = trackArray.length += 1
 
-    for (let i=1 ; i<=4 ; i++){
+    for (let i=1; i<trackTotal; i++){
       let newTrack = {...this.state[`track${i}`]}
-      let foundUrl = this.state.urls.find((url) => {return url.id===e[i-1].url_id})
+      let foundUrl = this.state.urls.find((url) => {return url.id===trackArray[i-1].url_id})
       newTrack.active = true;
-      newTrack.length = foundUrl.length
-      newTrack.name = e[i-1].name;
-      newTrack.pitchShift = e[i-1].pitch;
-      newTrack.playRate = e[i-1].tempo;
-      newTrack.trackIn = e[i-1].in;
-      newTrack.trackOut = e[i-1].out;
+      newTrack.length = `${foundUrl.length}`;
+      newTrack.name = trackArray[i-1].name;
+      newTrack.pitchShift = `${trackArray[i-1].pitch}`;
+      newTrack.playRate = `${trackArray[i-1].tempo}`;
+      newTrack.trackIn = `${trackArray[i-1].in}`;
+      newTrack.trackOut = `${trackArray[i-1].out}`;
       newTrack.url = foundUrl.link
-      newTrack.url_id = e[i-1].url_id;
-      newTrack.volumeLevel = e[i-1].volume;
-
-      this.setState({[`track${i}`] : newTrack})
+      newTrack.url_id = trackArray[i-1].url_id;
+      newTrack.volumeLevel = `${trackArray[i-1].volume}`;
+      this.setState({
+        [`track${i}`]: newTrack,
+        songName: songName
+      })
     }
   }
 
@@ -224,7 +227,7 @@ class App extends Component {
     })
   }
 
-  // added a dependent destroy on the backend so deleting a song
+  // added a dependent destroy in the API so deleting a song
   // also deleted the associated songtracks and tracks
   // only one fetch needs to be made and removes the need for a Promise.all
   // also handles removing song from library on the DOM
@@ -237,13 +240,14 @@ class App extends Component {
     })
   }
 
+  // the songname as typed into the field is saved in state
   handleSongName = (e) => {
-    console.log(e.target.value);
     this.setState({songName: e.target.value})
-    console.log(this.state.songName);
   }
 
+  // sends a post request to the API with the
   postSong = () => {
+    console.log('posting a song');
     return fetch(SONGAPI, {
       method: "POST",
       headers: {
@@ -261,7 +265,7 @@ class App extends Component {
 //these can probably also be refactored into one method
 
   postTrack1 = () => {
-    // console.log('postTrack1', this.state.track1)
+    console.log('postTrack1', this.state.track1)
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -287,7 +291,7 @@ class App extends Component {
   }
 
   postTrack2 = () => {
-    // console.log('postTrack2', this.state.track2);
+    console.log('postTrack2', this.state.track2);
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -310,7 +314,7 @@ class App extends Component {
   }
 
   postTrack3 = () => {
-    // console.log('postTrack3', this.state.track3);
+    console.log('postTrack3', this.state.track3);
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
@@ -333,7 +337,7 @@ class App extends Component {
   }
 
   postTrack4 = () => {
-    // console.log('postTrack4', this.state.track4);
+    console.log('postTrack4', this.state.track4);
     return fetch(TRACKAPI, {
         method: "POST",
         headers: {
